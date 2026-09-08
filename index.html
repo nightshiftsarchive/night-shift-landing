@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -22,7 +23,7 @@
 html,
 body {
     width: 100%;
-    height: 100%;
+    min-height: 100%;
 }
 
 body {
@@ -38,7 +39,7 @@ body {
 
 
 /* =========================================================
-   LANDING
+   PAGE
 ========================================================= */
 
 .landing {
@@ -48,195 +49,34 @@ body {
     width: 100vw;
     height: 100vh;
 
-    min-height: 620px;
+    min-height: 640px;
 
     overflow: hidden;
 
     background:
         radial-gradient(
-            ellipse at 50% 47%,
+            ellipse at 58% 48%,
             rgba(255,255,255,.018),
-            transparent 43%
+            transparent 42%
         ),
         #030303;
 }
 
 
 /* =========================================================
-   EUROPE OVERLAY
-========================================================= */
-
-.europe-overlay {
-
-    position: absolute;
-
-    left: 50%;
-    top: 50%;
-
-    transform:
-        translate(-50%, -50%);
-
-    width: min(780px, 52vw);
-
-    height: auto;
-
-    z-index: 1;
-
-    pointer-events: none;
-
-    overflow: visible;
-}
-
-
-/* ALL MAP LINES */
-
-.country {
-
-    fill: none;
-
-    stroke:
-        rgba(238,234,226,.18);
-
-    stroke-width: 1;
-
-    vector-effect:
-        non-scaling-stroke;
-
-    stroke-linejoin: round;
-
-    stroke-linecap: round;
-}
-
-
-/* exterior coastlines slightly stronger */
-
-.coast {
-
-    fill: none;
-
-    stroke:
-        rgba(238,234,226,.27);
-
-    stroke-width: 1.1;
-
-    vector-effect:
-        non-scaling-stroke;
-
-    stroke-linejoin: round;
-
-    stroke-linecap: round;
-}
-
-
-/* =========================================================
-   CITY SIGNALS
-========================================================= */
-
-.city-core {
-
-    fill: #f4f0e8;
-
-}
-
-
-.city-glow {
-
-    fill: rgba(244,240,232,.22);
-
-    transform-box: fill-box;
-
-    transform-origin: center;
-
-    animation:
-        cityPulse
-        4s
-        ease-in-out
-        infinite;
-}
-
-
-.city-ring {
-
-    fill: none;
-
-    stroke:
-        rgba(244,240,232,.15);
-
-    stroke-width: 1;
-
-    transform-box: fill-box;
-
-    transform-origin: center;
-
-    animation:
-        ringPulse
-        4s
-        ease-out
-        infinite;
-}
-
-
-.amsterdam-glow,
-.amsterdam-ring {
-    animation-delay: 1.3s;
-}
-
-
-.berlin-glow,
-.berlin-ring {
-    animation-delay: 2.6s;
-}
-
-
-@keyframes cityPulse {
-
-    0%,
-    100% {
-        opacity: .25;
-        transform: scale(.7);
-    }
-
-    50% {
-        opacity: 1;
-        transform: scale(1.8);
-    }
-
-}
-
-
-@keyframes ringPulse {
-
-    0% {
-        opacity: .45;
-        transform: scale(.4);
-    }
-
-    65% {
-        opacity: .08;
-    }
-
-    100% {
-        opacity: 0;
-        transform: scale(2.2);
-    }
-
-}
-
-
-/* =========================================================
-   CORNER TEXT
+   CORNER ELEMENTS
 ========================================================= */
 
 .corner {
 
     position: absolute;
 
-    z-index: 20;
+    z-index: 30;
 
     text-transform: uppercase;
 
     color:
-        rgba(238,234,226,.68);
+        rgba(238,234,226,.66);
 }
 
 
@@ -265,7 +105,8 @@ body {
 
     letter-spacing: 3px;
 
-    opacity: .6;
+    opacity: .58;
+
 }
 
 
@@ -277,6 +118,7 @@ body {
     font-size: 7px;
 
     letter-spacing: 3px;
+
 }
 
 
@@ -289,7 +131,8 @@ body {
 
     letter-spacing: 2px;
 
-    opacity: .48;
+    opacity: .45;
+
 }
 
 
@@ -302,26 +145,331 @@ body {
 
     letter-spacing: 2px;
 
-    opacity: .48;
+    opacity: .45;
+
 }
 
 
 /* =========================================================
-   CENTRAL CONTENT
+   LEFT CITY INDEX
+========================================================= */
+
+.city-index {
+
+    position: absolute;
+
+    left: 5.5vw;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 165px;
+
+    z-index: 15;
+
+    text-transform: uppercase;
+}
+
+
+.city-index-title {
+
+    margin-bottom: 20px;
+
+    padding-bottom: 10px;
+
+    border-bottom:
+        1px solid
+        rgba(238,234,226,.14);
+
+    font-size: 7px;
+
+    letter-spacing: 3px;
+
+    color:
+        rgba(238,234,226,.58);
+}
+
+
+.city-index-title .inactive {
+
+    color:
+        rgba(238,234,226,.28);
+}
+
+
+.city-list {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 9px;
+
+    list-style: none;
+}
+
+
+.city-list li {
+
+    font-size: 7px;
+
+    letter-spacing: 2.4px;
+
+    color:
+        rgba(238,234,226,.28);
+
+    transition:
+        color .3s ease;
+}
+
+
+.city-list li:hover {
+
+    color:
+        rgba(238,234,226,.7);
+}
+
+
+/* =========================================================
+   INVISIBLE EUROPE / CITY CONSTELLATION
+========================================================= */
+
+.constellation {
+
+    position: absolute;
+
+    left: 56%;
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    width:
+        min(760px, 54vw);
+
+    height:
+        min(560px, 66vh);
+
+    z-index: 2;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   INDIVIDUAL CITY NODE
+========================================================= */
+
+.node {
+
+    position: absolute;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    white-space: nowrap;
+
+    opacity: .42;
+}
+
+
+.node-dot {
+
+    position: relative;
+
+    display: block;
+
+    width: 3px;
+    height: 3px;
+
+    flex: 0 0 3px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(238,234,226,.56);
+
+    box-shadow:
+        0 0 4px
+        rgba(255,255,255,.16);
+}
+
+
+/* faint dormant ring */
+
+.node-dot::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 11px;
+    height: 11px;
+
+    transform:
+        translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    border:
+        1px solid
+        rgba(238,234,226,.05);
+}
+
+
+.node-name {
+
+    font-size: 6px;
+
+    letter-spacing: 2.1px;
+
+    color:
+        rgba(238,234,226,.38);
+
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   CITY POSITIONS
+
+   Approximate relative geographic layout of Europe.
+========================================================= */
+
+
+/* NORTH */
+
+.oslo {
+    left: 50%;
+    top: 3%;
+}
+
+.stockholm {
+    left: 62%;
+    top: 7%;
+}
+
+.copenhagen {
+    left: 51%;
+    top: 20%;
+}
+
+
+/* NORTH-WEST */
+
+.london {
+    left: 23%;
+    top: 28%;
+}
+
+.amsterdam {
+    left: 38%;
+    top: 30%;
+}
+
+.berlin {
+    left: 53%;
+    top: 30%;
+}
+
+
+/* WEST */
+
+.paris {
+    left: 29%;
+    top: 41%;
+}
+
+
+/* CENTRAL */
+
+.prague {
+    left: 55%;
+    top: 42%;
+}
+
+.vienna {
+    left: 57%;
+    top: 51%;
+}
+
+.warsaw {
+    left: 69%;
+    top: 36%;
+}
+
+.budapest {
+    left: 62%;
+    top: 58%;
+}
+
+
+/* SOUTH-WEST */
+
+.lisbon {
+    left: 7%;
+    top: 68%;
+}
+
+.madrid {
+    left: 20%;
+    top: 65%;
+}
+
+.barcelona {
+    left: 29%;
+    top: 70%;
+}
+
+
+/* SOUTH */
+
+.milan {
+    left: 45%;
+    top: 66%;
+}
+
+.rome {
+    left: 49%;
+    top: 77%;
+}
+
+
+/* EAST / SOUTH-EAST */
+
+.bucharest {
+    left: 76%;
+    top: 64%;
+}
+
+.athens {
+    left: 69%;
+    top: 87%;
+}
+
+
+/* =========================================================
+   MAIN CONTENT
 ========================================================= */
 
 .content {
 
     position: absolute;
 
-    left: 50%;
-    top: 48%;
+    left: 57%;
+    top: 49%;
 
     transform:
         translate(-50%, -50%);
 
     width:
-        min(680px, 72vw);
+        min(700px, 60vw);
 
     text-align: center;
 
@@ -329,7 +477,9 @@ body {
 }
 
 
-/* CLOCK */
+/* =========================================================
+   CLOCK
+========================================================= */
 
 .clock {
 
@@ -340,11 +490,13 @@ body {
     letter-spacing: 4px;
 
     color:
-        rgba(238,234,226,.52);
+        rgba(238,234,226,.48);
 }
 
 
-/* HEADLINE */
+/* =========================================================
+   HEADLINE
+========================================================= */
 
 h1 {
 
@@ -352,9 +504,9 @@ h1 {
 
     font-size:
         clamp(
-            25px,
+            26px,
             2.65vw,
-            42px
+            43px
         );
 
     font-weight: 400;
@@ -367,7 +519,9 @@ h1 {
 }
 
 
-/* QUESTION */
+/* =========================================================
+   QUESTION
+========================================================= */
 
 .question {
 
@@ -378,7 +532,7 @@ h1 {
     letter-spacing: 4px;
 
     color:
-        rgba(238,234,226,.64);
+        rgba(238,234,226,.6);
 }
 
 
@@ -390,8 +544,8 @@ h1 {
 
     width:
         min(
-            390px,
-            74vw
+            410px,
+            72vw
         );
 
     margin:
@@ -409,7 +563,7 @@ h1 {
         1fr
         1fr;
 
-    gap: 22px;
+    gap: 24px;
 }
 
 
@@ -430,7 +584,7 @@ h1 {
     letter-spacing: 3px;
 
     color:
-        rgba(238,234,226,.46);
+        rgba(238,234,226,.43);
 }
 
 
@@ -442,7 +596,7 @@ h1 {
 
     border-bottom:
         1px solid
-        rgba(238,234,226,.38);
+        rgba(238,234,226,.34);
 
     outline: none;
 
@@ -469,7 +623,7 @@ h1 {
 .field input:focus {
 
     border-bottom-color:
-        rgba(238,234,226,.9);
+        rgba(238,234,226,.82);
 }
 
 
@@ -481,13 +635,13 @@ button {
 
     width: 100%;
 
-    height: 36px;
+    height: 37px;
 
-    margin-top: 21px;
+    margin-top: 22px;
 
     border:
         1px solid
-        rgba(238,234,226,.34);
+        rgba(238,234,226,.32);
 
     background:
         rgba(3,3,3,.72);
@@ -523,7 +677,7 @@ button:hover {
 
 
 /* =========================================================
-   FORM STATUS
+   STATUS
 ========================================================= */
 
 .status {
@@ -537,12 +691,12 @@ button:hover {
     letter-spacing: 2px;
 
     color:
-        rgba(238,234,226,.48);
+        rgba(238,234,226,.45);
 }
 
 
 /* =========================================================
-   PAGE TEXTURE
+   VISUAL TEXTURE
 ========================================================= */
 
 .vignette {
@@ -557,9 +711,9 @@ button:hover {
 
     background:
         radial-gradient(
-            ellipse at center,
-            transparent 48%,
-            rgba(0,0,0,.08) 72%,
+            ellipse at 55% 48%,
+            transparent 46%,
+            rgba(0,0,0,.06) 67%,
             rgba(0,0,0,.42) 100%
         );
 }
@@ -575,7 +729,7 @@ button:hover {
 
     pointer-events: none;
 
-    opacity: .014;
+    opacity: .012;
 
     background:
         repeating-linear-gradient(
@@ -585,6 +739,39 @@ button:hover {
             transparent 1px,
             transparent 4px
         );
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .city-index {
+
+        left: 35px;
+
+    }
+
+
+    .constellation {
+
+        left: 59%;
+
+        width: 68vw;
+
+        opacity: .7;
+
+    }
+
+
+    .content {
+
+        left: 57%;
+
+    }
+
 }
 
 
@@ -603,28 +790,92 @@ button:hover {
 
     .landing {
 
+        width: 100%;
+
         height: auto;
 
         min-height: 100svh;
 
+        overflow: hidden;
+
         padding:
-            135px
+            125px
             22px
-            95px;
+            80px;
 
     }
 
 
-    .europe-overlay {
+    /* -----------------------------------------
+       HEADER
+    ----------------------------------------- */
 
-        width: 125vw;
+    .top-left {
 
-        top: 48%;
-
-        opacity: .72;
+        top: 22px;
+        left: 20px;
 
     }
 
+
+    .top-right {
+
+        top: 24px;
+        right: 20px;
+
+        max-width: 135px;
+
+        text-align: right;
+
+        line-height: 1.5;
+
+    }
+
+
+    /* -----------------------------------------
+       CITY CONSTELLATION
+    ----------------------------------------- */
+
+    .constellation {
+
+        position: absolute;
+
+        left: 50%;
+        top: 39%;
+
+        transform:
+            translate(-50%, -50%);
+
+        width: 115vw;
+        height: 440px;
+
+        opacity: .42;
+
+    }
+
+
+    .node-name {
+
+        font-size: 5px;
+
+        letter-spacing: 1.5px;
+
+    }
+
+
+    .node-dot {
+
+        width: 2px;
+        height: 2px;
+
+        flex-basis: 2px;
+
+    }
+
+
+    /* -----------------------------------------
+       MAIN
+    ----------------------------------------- */
 
     .content {
 
@@ -636,6 +887,8 @@ button:hover {
         transform: none;
 
         width: 100%;
+
+        margin-top: 70px;
 
     }
 
@@ -650,6 +903,8 @@ button:hover {
     h1 {
 
         white-space: normal;
+
+        width: 100%;
 
         max-width: 360px;
 
@@ -669,7 +924,7 @@ button:hover {
 
     .question {
 
-        max-width: 300px;
+        max-width: 310px;
 
         margin:
             18px
@@ -678,18 +933,22 @@ button:hover {
 
         font-size: 7px;
 
-        letter-spacing: 3px;
-
         line-height: 1.7;
+
+        letter-spacing: 3px;
 
     }
 
+
+    /* -----------------------------------------
+       FORM
+    ----------------------------------------- */
 
     .form-area {
 
         width: 100%;
 
-        max-width: 350px;
+        max-width: 360px;
 
         margin-top: 38px;
 
@@ -707,43 +966,85 @@ button:hover {
 
     button {
 
-        height: 40px;
+        height: 42px;
 
-        margin-top: 25px;
-
-    }
-
-
-    .top-left {
-
-        left: 20px;
-        top: 21px;
+        margin-top: 26px;
 
     }
 
 
-    .top-right {
+    /* -----------------------------------------
+       CITY INDEX ON MOBILE
+    ----------------------------------------- */
 
-        right: 20px;
-        top: 23px;
+    .city-index {
 
-        max-width: 135px;
+        position: relative;
 
-        text-align: right;
+        left: auto;
+        top: auto;
 
-        line-height: 1.5;
+        transform: none;
+
+        width: 100%;
+
+        max-width: 360px;
+
+        margin:
+            80px
+            auto
+            40px;
+
+        z-index: 15;
 
     }
 
+
+    .city-index-title {
+
+        margin-bottom: 18px;
+
+    }
+
+
+    .city-list {
+
+        display: grid;
+
+        grid-template-columns:
+            1fr
+            1fr;
+
+        gap:
+            12px
+            30px;
+
+    }
+
+
+    .city-list li {
+
+        font-size: 7px;
+
+    }
+
+
+    /* -----------------------------------------
+       FOOTER
+    ----------------------------------------- */
 
     .bottom-left {
 
-        left: 20px;
-        bottom: 18px;
+        position: relative;
 
-        max-width: 220px;
+        left: auto;
+        bottom: auto;
 
-        line-height: 1.5;
+        margin-top: 30px;
+
+        text-align: center;
+
+        line-height: 1.6;
 
     }
 
@@ -757,16 +1058,18 @@ button:hover {
 }
 
 </style>
+
 </head>
 
 
 <body>
 
+
 <main class="landing">
 
 
 <!-- =====================================================
-     TOP LEFT
+     BRAND
 ===================================================== -->
 
 <div class="corner top-left">
@@ -791,558 +1094,252 @@ button:hover {
 
 
 <!-- =====================================================
-     EUROPE LINE OVERLAY
-     NO IMAGE / NO BACKGROUND IMAGE / NO FILL
+     LEFT EUROPE STATUS
 ===================================================== -->
 
-<svg
-    class="europe-overlay"
-    viewBox="0 0 1000 700"
-    xmlns="http://www.w3.org/2000/svg"
-    aria-hidden="true"
->
-
-
-    <!-- =================================================
-         COAST / MAJOR LAND OUTLINES
-    ================================================== -->
-
-
-    <!-- IBERIAN PENINSULA -->
-
-    <path
-        class="coast"
-        d="
-        M182 487
-        L147 472
-        L118 488
-        L109 526
-        L126 563
-        L177 573
-        L220 557
-        L245 521
-        L230 492
-        Z
-        "
-    />
-
-
-    <!-- FRANCE -->
-
-    <path
-        class="coast"
-        d="
-        M230 390
-        L190 412
-        L182 458
-        L205 490
-        L248 504
-        L282 477
-        L296 431
-        L270 398
-        Z
-        "
-    />
-
-
-    <!-- GREAT BRITAIN -->
-
-    <path
-        class="coast"
-        d="
-        M217 285
-        L199 251
-        L207 217
-        L229 190
-        L250 204
-        L258 238
-        L246 266
-        L260 291
-        L239 309
-        Z
-        "
-    />
-
-
-    <!-- IRELAND -->
-
-    <path
-        class="coast"
-        d="
-        M178 278
-        L162 251
-        L167 220
-        L188 209
-        L202 235
-        L196 267
-        Z
-        "
-    />
-
-
-    <!-- SCANDINAVIA -->
-
-    <path
-        class="coast"
-        d="
-        M406 280
-        L390 237
-        L399 188
-        L421 136
-        L452 88
-        L480 69
-        L500 91
-        L494 133
-        L474 172
-        L479 211
-        L459 251
-        L434 283
-        Z
-        "
-    />
-
-
-    <!-- CENTRAL EUROPE -->
-
-    <path
-        class="coast"
-        d="
-        M287 348
-        L310 315
-        L349 300
-        L394 304
-        L429 327
-        L468 316
-        L507 335
-        L514 374
-        L488 401
-        L446 411
-        L407 397
-        L365 414
-        L323 399
-        L294 373
-        Z
-        "
-    />
-
-
-    <!-- EASTERN EUROPE -->
-
-    <path
-        class="coast"
-        d="
-        M508 334
-        L555 306
-        L614 307
-        L670 325
-        L728 360
-        L752 395
-        L733 428
-        L686 440
-        L644 466
-        L596 450
-        L552 461
-        L510 429
-        L488 399
-        Z
-        "
-    />
-
-
-    <!-- ITALY -->
-
-    <path
-        class="coast"
-        d="
-        M388 414
-        L406 430
-        L413 458
-        L432 478
-        L449 515
-        L437 530
-        L418 502
-        L395 487
-        L382 455
-        L367 436
-        Z
-        "
-    />
-
-
-    <!-- BALKANS -->
-
-    <path
-        class="coast"
-        d="
-        M475 418
-        L518 425
-        L553 449
-        L589 463
-        L614 497
-        L598 520
-        L558 511
-        L526 526
-        L488 503
-        L458 468
-        Z
-        "
-    />
-
-
-    <!-- GREECE -->
-
-    <path
-        class="coast"
-        d="
-        M553 508
-        L570 527
-        L577 554
-        L564 572
-        L547 554
-        L537 531
-        Z
-        "
-    />
-
-
-
-    <!-- =================================================
-         INTERNAL BORDER SUGGESTIONS
-    ================================================== -->
-
-
-    <!-- SPAIN / PORTUGAL -->
-
-    <path
-        class="country"
-        d="
-        M145 480
-        L151 514
-        L143 548
-        "
-    />
-
-
-    <!-- SPAIN / FRANCE -->
-
-    <path
-        class="country"
-        d="
-        M207 490
-        L230 493
-        "
-    />
-
-
-    <!-- FRANCE / BELGIUM / GERMANY -->
-
-    <path
-        class="country"
-        d="
-        M270 398
-        L292 384
-        L311 389
-        "
-    />
-
-
-    <!-- NETHERLANDS -->
-
-    <path
-        class="country"
-        d="
-        M301 353
-        L316 348
-        L323 361
-        "
-    />
-
-
-    <!-- GERMANY WEST -->
-
-    <path
-        class="country"
-        d="
-        M323 361
-        L342 343
-        L365 350
-        L371 382
-        L358 405
-        "
-    />
-
-
-    <!-- GERMANY / POLAND -->
-
-    <path
-        class="country"
-        d="
-        M394 304
-        L407 335
-        L405 367
-        L420 397
-        "
-    />
-
-
-    <!-- DENMARK -->
-
-    <path
-        class="country"
-        d="
-        M365 307
-        L371 288
-        L383 280
-        "
-    />
-
-
-    <!-- NORWAY / SWEDEN -->
-
-    <path
-        class="country"
-        d="
-        M445 109
-        L444 155
-        L432 202
-        L438 248
-        "
-    />
-
-
-    <!-- SWEDEN / FINLAND -->
-
-    <path
-        class="country"
-        d="
-        M477 101
-        L473 143
-        L461 184
-        L465 226
-        "
-    />
-
-
-    <!-- SWITZERLAND -->
-
-    <path
-        class="country"
-        d="
-        M342 414
-        L356 422
-        L370 416
-        "
-    />
-
-
-    <!-- AUSTRIA -->
-
-    <path
-        class="country"
-        d="
-        M382 404
-        L414 412
-        L440 407
-        "
-    />
-
-
-    <!-- CZECHIA -->
-
-    <path
-        class="country"
-        d="
-        M382 373
-        L410 365
-        L433 377
-        "
-    />
-
-
-    <!-- POLAND -->
-
-    <path
-        class="country"
-        d="
-        M430 328
-        L465 337
-        L483 366
-        L467 398
-        "
-    />
-
-
-    <!-- ITALY / CENTRAL -->
-
-    <path
-        class="country"
-        d="
-        M384 415
-        L405 421
-        "
-    />
-
-
-    <!-- BALKAN INTERNAL -->
-
-    <path
-        class="country"
-        d="
-        M470 440
-        L500 454
-        L521 482
-        "
-    />
-
-
-    <path
-        class="country"
-        d="
-        M520 454
-        L550 448
-        L571 468
-        "
-    />
-
-
-    <path
-        class="country"
-        d="
-        M525 483
-        L555 493
-        L581 487
-        "
-    />
-
-
-    <!-- EASTERN BORDERS -->
-
-    <path
-        class="country"
-        d="
-        M510 350
-        L540 370
-        L548 410
-        L566 447
-        "
-    />
-
-
-    <path
-        class="country"
-        d="
-        M560 320
-        L580 352
-        L575 390
-        "
-    />
-
-
-    <path
-        class="country"
-        d="
-        M614 310
-        L625 350
-        L614 389
-        L628 428
-        "
-    />
-
-
-
-    <!-- =================================================
-         MADRID
-    ================================================== -->
-
-    <g>
-
-        <circle
-            class="city-ring"
-            cx="183"
-            cy="525"
-            r="8"
-        />
-
-        <circle
-            class="city-glow"
-            cx="183"
-            cy="525"
-            r="5"
-        />
-
-        <circle
-            class="city-core"
-            cx="183"
-            cy="525"
-            r="1.8"
-        />
-
-    </g>
-
-
-
-    <!-- =================================================
-         AMSTERDAM
-    ================================================== -->
-
-    <g>
-
-        <circle
-            class="city-ring amsterdam-ring"
-            cx="310"
-            cy="356"
-            r="8"
-        />
-
-        <circle
-            class="city-glow amsterdam-glow"
-            cx="310"
-            cy="356"
-            r="5"
-        />
-
-        <circle
-            class="city-core"
-            cx="310"
-            cy="356"
-            r="1.8"
-        />
-
-    </g>
-
-
-
-    <!-- =================================================
-         BERLIN
-    ================================================== -->
-
-    <g>
-
-        <circle
-            class="city-ring berlin-ring"
-            cx="389"
-            cy="348"
-            r="8"
-        />
-
-        <circle
-            class="city-glow berlin-glow"
-            cx="389"
-            cy="348"
-            r="5"
-        />
-
-        <circle
-            class="city-core"
-            cx="389"
-            cy="348"
-            r="1.8"
-        />
-
-    </g>
-
-
-</svg>
+<aside class="city-index">
+
+    <div class="city-index-title">
+
+        EUROPE |
+        <span class="inactive">
+            INACTIVE
+        </span>
+
+    </div>
+
+
+    <ul class="city-list">
+
+        <li>BERLIN</li>
+        <li>AMSTERDAM</li>
+        <li>LONDON</li>
+        <li>PARIS</li>
+        <li>MADRID</li>
+        <li>BARCELONA</li>
+        <li>LISBON</li>
+        <li>MILAN</li>
+        <li>ROME</li>
+        <li>PRAGUE</li>
+        <li>VIENNA</li>
+        <li>COPENHAGEN</li>
+        <li>WARSAW</li>
+        <li>BUDAPEST</li>
+        <li>BUCHAREST</li>
+        <li>ATHENS</li>
+
+    </ul>
+
+</aside>
+
+
+
+<!-- =====================================================
+     CITY SIGNAL CONSTELLATION
+===================================================== -->
+
+<div class="constellation">
+
+
+    <div class="node oslo">
+
+        <span class="node-dot"></span>
+
+        <span class="node-name">
+            OSLO
+        </span>
+
+    </div>
+
+
+    <div class="node stockholm">
+
+        <span class="node-dot"></span>
+
+        <span class="node-name">
+            STOCKHOLM
+        </span>
+
+    </div>
+
+
+    <div class="node copenhagen">
+
+        <span class="node-dot"></span>
+
+        <span class="node-name">
+            COPENHAGEN
+        </span>
+
+    </div>
+
+
+    <div class="node london">
+
+        <span class="node-dot"></span>
+
+        <span class="node-name">
+            LONDON
+        </span>
+
+    </div>
+
+
+    <div class="node amsterdam">
+
+        <span class="node-dot"></span>
+
+        <span class="node-name">
+            AMSTERDAM
+        </span>
+
+    </div>
+
+
+    <div class="node berlin">
+
+        <span class="node-dot"></span>
+
+        <span class="node-name">
+            BERLIN
+        </span>
+
+    </div>
+
+
+    <div class="node paris">
+
+        <span class="node-dot"></span>
+
+        <span class="node-name">
+            PARIS
+        </span>
+
+    </div>
+
+
+    <div class="node prague">
+
+        <span class="node-dot"></span>
+
+        <span class="node-name">
+            PRAGUE
+        </span>
+
+    </div>
+
+
+    <div class="node vienna">
+
+        <span class="node-dot"></span>
+
+        <span class="node-name">
+            VIENNA
+        </span>
+
+    </div>
+
+
+    <div class="node warsaw">
+
+        <span class="node-dot"></span>
+
+        <span class="node-name">
+            WARSAW
+        </span>
+
+    </div>
+
+
+    <div class="node lisbon">
+
+        <span class="node-dot"></span>
+
+        <span class="node-name">
+            LISBON
+        </span>
+
+    </div>
+
+
+    <div class="node madrid">
+
+        <span class="node-dot"></span>
+
+        <span class="node-name">
+            MADRID
+        </span>
+
+    </div>
+
+
+    <div class="node barcelona">
+
+        <span class="node-dot"></span>
+
+        <span class="node-name">
+            BARCELONA
+        </span>
+
+    </div>
+
+
+    <div class="node milan">
+
+        <span class="node-dot"></span>
+
+        <span class="node-name">
+            MILAN
+        </span>
+
+    </div>
+
+
+    <div class="node rome">
+
+        <span class="node-dot"></span>
+
+        <span class="node-name">
+            ROME
+        </span>
+
+    </div>
+
+
+    <div class="node budapest">
+
+        <span class="node-dot"></span>
+
+        <span class="node-name">
+            BUDAPEST
+        </span>
+
+    </div>
+
+
+    <div class="node bucharest">
+
+        <span class="node-dot"></span>
+
+        <span class="node-name">
+            BUCHAREST
+        </span>
+
+    </div>
+
+
+    <div class="node athens">
+
+        <span class="node-dot"></span>
+
+        <span class="node-name">
+            ATHENS
+        </span>
+
+    </div>
+
+
+</div>
 
 
 
@@ -1457,7 +1454,7 @@ button:hover {
 
 
 <!-- =====================================================
-     BOTTOM CORNERS
+     FOOTER
 ===================================================== -->
 
 <div class="corner bottom-left">
@@ -1485,6 +1482,7 @@ button:hover {
 
 
 <script>
+
 
 /* =========================================================
    LIVE CLOCK
@@ -1533,8 +1531,7 @@ setInterval(
 
 
 /* =========================================================
-   TEMP FORM BEHAVIOUR
-   REAL DATABASE CONNECTION COMES NEXT
+   TEMPORARY FORM
 ========================================================= */
 
 const form =
@@ -1576,13 +1573,14 @@ form.addEventListener(
 
 
         status.textContent =
-            "REQUEST RECEIVED. SHIFT PENDING.";
+            "SIGNAL RECEIVED. YOUR CITY REMAINS ASLEEP.";
 
 
         form.reset();
 
     }
 );
+
 
 </script>
 
