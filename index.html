@@ -1,10 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
 <title>NIGHT SHIFT</title>
+
 
 <style>
 
@@ -14,11 +21,13 @@
     box-sizing: border-box;
 }
 
+
 html,
 body {
     width: 100%;
     min-height: 100%;
 }
+
 
 body {
     background: #030303;
@@ -27,11 +36,14 @@ body {
     font-family: Georgia, "Times New Roman", serif;
 }
 
+
 .landing {
     position: relative;
+
     width: 100vw;
     height: 100vh;
     min-height: 640px;
+
     overflow: hidden;
 
     background:
@@ -51,47 +63,62 @@ body {
 .corner {
     position: absolute;
     z-index: 30;
+
     text-transform: uppercase;
+
     color: rgba(238,234,226,.66);
 }
+
 
 .top-left {
     top: 28px;
     left: 32px;
 }
 
+
 .brand {
     font-size: 11px;
     letter-spacing: 5px;
 }
 
+
 .hours {
     margin-top: 6px;
+
     font-size: 6px;
     letter-spacing: 3px;
+
     opacity: .58;
 }
+
 
 .top-right {
     top: 31px;
     right: 32px;
+
     font-size: 7px;
     letter-spacing: 3px;
 }
 
+
 .bottom-left {
     bottom: 23px;
     left: 32px;
+
     font-size: 6px;
     letter-spacing: 2px;
+
     opacity: .45;
 }
+
 
 .bottom-right {
     bottom: 23px;
     right: 32px;
+
     font-size: 6px;
     letter-spacing: 2px;
+
     opacity: .45;
 }
 
@@ -102,27 +129,35 @@ body {
 
 .constellation {
     position: absolute;
+
     left: 50%;
     top: 49%;
 
-    transform: translate(-50%, -50%);
+    transform:
+        translate(-50%, -50%);
 
-    width: min(920px, 64vw);
-    height: min(620px, 70vh);
+    width:
+        min(920px, 64vw);
+
+    height:
+        min(620px, 70vh);
 
     z-index: 2;
+
     pointer-events: none;
 }
 
 
 /* =====================================================
-   CITY SIGNAL
+   CITY SIGNALS
 ===================================================== */
 
 .node {
     position: absolute;
+
     display: flex;
     align-items: center;
+
     gap: 8px;
 
     white-space: nowrap;
@@ -139,6 +174,7 @@ body {
         var(--delay, 0s);
 }
 
+
 .node-dot {
     position: relative;
 
@@ -147,10 +183,12 @@ body {
 
     border-radius: 50%;
 
-    background: rgba(245,242,235,.78);
+    background:
+        rgba(245,242,235,.78);
 
     box-shadow:
-        0 0 4px rgba(255,255,255,.26);
+        0 0 4px
+        rgba(255,255,255,.26);
 
     animation:
         dotGlow
@@ -161,6 +199,7 @@ body {
     animation-delay:
         var(--delay, 0s);
 }
+
 
 .node-dot::after {
     content: "";
@@ -195,6 +234,7 @@ body {
         var(--delay, 0s);
 }
 
+
 .node-name {
     font-size: 6px;
     letter-spacing: 2.1px;
@@ -205,7 +245,8 @@ body {
     text-transform: uppercase;
 
     text-shadow:
-        0 0 0 rgba(255,255,255,0);
+        0 0 0
+        rgba(255,255,255,0);
 
     animation:
         nameSignal
@@ -242,11 +283,13 @@ body {
     }
 }
 
+
 @keyframes dotGlow {
 
     0%,
     100% {
-        transform: scale(.75);
+        transform:
+            scale(.75);
 
         box-shadow:
             0 0 3px
@@ -254,17 +297,21 @@ body {
     }
 
     48% {
-        transform: scale(1.8);
+        transform:
+            scale(1.8);
 
         box-shadow:
             0 0 6px
             rgba(255,255,255,.9),
+
             0 0 14px
             rgba(255,255,255,.42),
+
             0 0 26px
             rgba(255,255,255,.16);
     }
 }
+
 
 @keyframes signalRing {
 
@@ -297,10 +344,12 @@ body {
     }
 }
 
+
 @keyframes nameSignal {
 
     0%,
     100% {
+
         color:
             rgba(238,234,226,.18);
 
@@ -310,11 +359,13 @@ body {
     }
 
     40% {
+
         color:
             rgba(238,234,226,.27);
     }
 
     50% {
+
         color:
             rgba(245,242,235,.78);
 
@@ -324,6 +375,7 @@ body {
     }
 
     63% {
+
         color:
             rgba(238,234,226,.30);
 
@@ -341,125 +393,160 @@ body {
 .oslo {
     left: 48%;
     top: 1%;
+
     --delay: .2s;
     --duration: 6.2s;
 }
 
+
 .stockholm {
     left: 61%;
     top: 8%;
+
     --delay: 2.1s;
     --duration: 7s;
 }
 
+
 .copenhagen {
     left: 51%;
     top: 20%;
+
     --delay: 1.2s;
     --duration: 5.4s;
 }
 
+
 .london {
     left: 21%;
     top: 31%;
+
     --delay: 3.4s;
     --duration: 6.7s;
 }
 
+
 .amsterdam {
     left: 36%;
     top: 33%;
+
     --delay: .8s;
     --duration: 5.8s;
 }
 
+
 .berlin {
     left: 57%;
     top: 33%;
+
     --delay: 2.8s;
     --duration: 6.1s;
 }
 
+
 .paris {
     left: 27%;
     top: 45%;
+
     --delay: 4.1s;
     --duration: 7.3s;
 }
 
+
 .prague {
     left: 59%;
     top: 44%;
+
     --delay: 1.7s;
     --duration: 6.4s;
 }
 
+
 .vienna {
     left: 66%;
     top: 54%;
+
     --delay: 3.1s;
     --duration: 5.9s;
 }
 
+
 .warsaw {
     left: 73%;
     top: 38%;
+
     --delay: .4s;
     --duration: 6.8s;
 }
 
+
 .budapest {
     left: 70%;
     top: 62%;
+
     --delay: 2.3s;
     --duration: 7.1s;
 }
 
+
 .lisbon {
     left: 5%;
     top: 70%;
+
     --delay: 3.8s;
     --duration: 6.6s;
 }
 
+
 .madrid {
     left: 18%;
     top: 66%;
+
     --delay: 1s;
     --duration: 5.6s;
 }
 
+
 .barcelona {
     left: 28%;
     top: 74%;
+
     --delay: 4.5s;
     --duration: 7.4s;
 }
 
+
 .milan {
     left: 46%;
     top: 72%;
+
     --delay: 2s;
     --duration: 6s;
 }
 
+
 .rome {
     left: 52%;
     top: 83%;
+
     --delay: .6s;
     --duration: 6.9s;
 }
 
+
 .bucharest {
     left: 82%;
     top: 67%;
+
     --delay: 3.6s;
     --duration: 7.2s;
 }
 
+
 .athens {
     left: 72%;
     top: 91%;
+
     --delay: 1.5s;
     --duration: 6.3s;
 }
@@ -486,6 +573,7 @@ body {
     z-index: 10;
 }
 
+
 .clock {
     margin-bottom: 20px;
 
@@ -495,6 +583,7 @@ body {
     color:
         rgba(238,234,226,.48);
 }
+
 
 h1 {
     white-space: nowrap;
@@ -514,6 +603,7 @@ h1 {
 
     color: #eeeae2;
 }
+
 
 .question {
     margin-top: 18px;
@@ -543,6 +633,7 @@ h1 {
         0;
 }
 
+
 .form {
     display: grid;
 
@@ -553,9 +644,11 @@ h1 {
     gap: 24px;
 }
 
+
 .field {
     text-align: left;
 }
+
 
 .field label {
     display: block;
@@ -568,6 +661,7 @@ h1 {
     color:
         rgba(238,234,226,.43);
 }
+
 
 .field input {
     width: 100%;
@@ -595,13 +689,16 @@ h1 {
         serif;
 
     font-size: 9px;
+
     letter-spacing: 1px;
 }
+
 
 .field input:focus {
     border-bottom-color:
         rgba(238,234,226,.82);
 }
+
 
 button {
     width: 100%;
@@ -631,14 +728,23 @@ button {
     transition:
         background .25s ease,
         color .25s ease,
-        border-color .25s ease;
+        border-color .25s ease,
+        opacity .25s ease;
 }
+
 
 button:hover {
     background: #eeeae2;
     color: #030303;
     border-color: #eeeae2;
 }
+
+
+button:disabled {
+    cursor: wait;
+    opacity: .45;
+}
+
 
 .status {
     min-height: 13px;
@@ -647,6 +753,8 @@ button:hover {
 
     font-size: 6px;
     letter-spacing: 2px;
+
+    line-height: 1.6;
 
     color:
         rgba(238,234,226,.45);
@@ -659,6 +767,7 @@ button:hover {
 
 .vignette {
     position: absolute;
+
     inset: 0;
 
     z-index: 7;
@@ -674,8 +783,10 @@ button:hover {
         );
 }
 
+
 .scanlines {
     position: absolute;
+
     inset: 0;
 
     z-index: 40;
@@ -706,13 +817,16 @@ button:hover {
         min-height: 100%;
     }
 
+
     body {
         overflow-y: auto;
         overflow-x: hidden;
     }
 
+
     .landing {
         height: auto;
+
         min-height: 100svh;
 
         padding:
@@ -723,20 +837,24 @@ button:hover {
         overflow: hidden;
     }
 
+
     .top-left {
         top: 22px;
         left: 20px;
     }
+
 
     .brand {
         font-size: 10px;
         letter-spacing: 5px;
     }
 
+
     .hours {
         font-size: 6px;
         letter-spacing: 3px;
     }
+
 
     .top-right {
         top: 23px;
@@ -748,8 +866,10 @@ button:hover {
 
         font-size: 7px;
         letter-spacing: 3px;
+
         line-height: 1.55;
     }
+
 
     .constellation {
         left: 50%;
@@ -764,10 +884,12 @@ button:hover {
         opacity: .74;
     }
 
+
     .node-name {
         font-size: 5px;
         letter-spacing: 1.4px;
     }
+
 
     .node-dot {
         width: 3px;
@@ -775,92 +897,107 @@ button:hover {
     }
 
 
-    /* MOBILE CITY REPOSITIONING */
-
     .oslo {
         left: 47%;
         top: 2%;
     }
+
 
     .stockholm {
         left: 65%;
         top: 9%;
     }
 
+
     .copenhagen {
         left: 56%;
         top: 19%;
     }
+
 
     .london {
         left: 11%;
         top: 28%;
     }
 
+
     .amsterdam {
         left: 28%;
         top: 33%;
     }
+
 
     .berlin {
         left: 70%;
         top: 31%;
     }
 
+
     .paris {
         left: 11%;
         top: 43%;
     }
+
 
     .prague {
         left: 75%;
         top: 43%;
     }
 
+
     .vienna {
         left: 80%;
         top: 56%;
     }
+
 
     .warsaw {
         left: 88%;
         top: 37%;
     }
 
+
     .budapest {
         left: 81%;
         top: 67%;
     }
+
 
     .lisbon {
         left: 3%;
         top: 76%;
     }
 
+
     .madrid {
         left: 13%;
         top: 68%;
     }
+
 
     .barcelona {
         left: 18%;
         top: 81%;
     }
 
+
     .milan {
         left: 45%;
         top: 78%;
     }
+
 
     .rome {
         left: 50%;
         top: 89%;
     }
 
+
     .bucharest {
         left: 88%;
         top: 77%;
     }
+
 
     .athens {
         left: 75%;
@@ -886,12 +1023,14 @@ button:hover {
         z-index: 12;
     }
 
+
     .clock {
         margin-bottom: 22px;
 
         font-size: 7px;
         letter-spacing: 4px;
     }
+
 
     h1 {
         white-space: normal;
@@ -908,8 +1047,10 @@ button:hover {
             );
 
         line-height: 1.08;
+
         letter-spacing: .06em;
     }
+
 
     .question {
         max-width: 315px;
@@ -921,8 +1062,10 @@ button:hover {
 
         font-size: 7px;
         letter-spacing: 3px;
+
         line-height: 1.8;
     }
+
 
     .form-area {
         width: 100%;
@@ -934,13 +1077,16 @@ button:hover {
             0;
     }
 
+
     .form {
         display: block;
     }
 
+
     .field {
         margin-bottom: 25px;
     }
+
 
     .field label {
         margin-bottom: 9px;
@@ -949,9 +1095,11 @@ button:hover {
         letter-spacing: 3px;
     }
 
+
     .field input {
         padding-bottom: 8px;
     }
+
 
     button {
         height: 38px;
@@ -962,9 +1110,11 @@ button:hover {
         letter-spacing: 2.7px;
     }
 
+
     .status {
         margin-top: 12px;
     }
+
 
     .bottom-left {
         position: relative;
@@ -983,8 +1133,10 @@ button:hover {
 
         font-size: 6px;
         letter-spacing: 2px;
+
         line-height: 1.7;
     }
+
 
     .bottom-right {
         display: none;
@@ -1003,15 +1155,19 @@ button:hover {
         padding-right: 16px;
     }
 
+
     .top-right {
         width: 132px;
+
         font-size: 6px;
         letter-spacing: 2.5px;
     }
 
+
     .content {
         margin-top: 145px;
     }
+
 
     h1 {
         max-width: 330px;
@@ -1024,9 +1180,11 @@ button:hover {
             );
     }
 
+
     .question {
         max-width: 280px;
     }
+
 
     .form-area {
         max-width: 310px;
@@ -1034,13 +1192,18 @@ button:hover {
 }
 
 </style>
+
 </head>
+
 
 <body>
 
+
 <main class="landing">
 
+
 <div class="corner top-left">
+
     <div class="brand">
         NIGHT SHIFT
     </div>
@@ -1048,135 +1211,169 @@ button:hover {
     <div class="hours">
         22:00 — 06:00
     </div>
+
 </div>
+
 
 <div class="corner top-right">
     NOT ANOTHER SOCIAL APP.
 </div>
 
 
+
 <!-- CITY SIGNALS -->
 
+
 <div class="constellation">
+
 
     <div class="node oslo">
         <span class="node-dot"></span>
         <span class="node-name">OSLO</span>
     </div>
 
+
     <div class="node stockholm">
         <span class="node-dot"></span>
         <span class="node-name">STOCKHOLM</span>
     </div>
+
 
     <div class="node copenhagen">
         <span class="node-dot"></span>
         <span class="node-name">COPENHAGEN</span>
     </div>
 
+
     <div class="node london">
         <span class="node-dot"></span>
         <span class="node-name">LONDON</span>
     </div>
+
 
     <div class="node amsterdam">
         <span class="node-dot"></span>
         <span class="node-name">AMSTERDAM</span>
     </div>
 
+
     <div class="node berlin">
         <span class="node-dot"></span>
         <span class="node-name">BERLIN</span>
     </div>
+
 
     <div class="node paris">
         <span class="node-dot"></span>
         <span class="node-name">PARIS</span>
     </div>
 
+
     <div class="node prague">
         <span class="node-dot"></span>
         <span class="node-name">PRAGUE</span>
     </div>
+
 
     <div class="node vienna">
         <span class="node-dot"></span>
         <span class="node-name">VIENNA</span>
     </div>
 
+
     <div class="node warsaw">
         <span class="node-dot"></span>
         <span class="node-name">WARSAW</span>
     </div>
+
 
     <div class="node budapest">
         <span class="node-dot"></span>
         <span class="node-name">BUDAPEST</span>
     </div>
 
+
     <div class="node lisbon">
         <span class="node-dot"></span>
         <span class="node-name">LISBON</span>
     </div>
+
 
     <div class="node madrid">
         <span class="node-dot"></span>
         <span class="node-name">MADRID</span>
     </div>
 
+
     <div class="node barcelona">
         <span class="node-dot"></span>
         <span class="node-name">BARCELONA</span>
     </div>
+
 
     <div class="node milan">
         <span class="node-dot"></span>
         <span class="node-name">MILAN</span>
     </div>
 
+
     <div class="node rome">
         <span class="node-dot"></span>
         <span class="node-name">ROME</span>
     </div>
+
 
     <div class="node bucharest">
         <span class="node-dot"></span>
         <span class="node-name">BUCHAREST</span>
     </div>
 
+
     <div class="node athens">
         <span class="node-dot"></span>
         <span class="node-name">ATHENS</span>
     </div>
 
+
 </div>
+
 
 
 <!-- MAIN CONTENT -->
 
+
 <section class="content">
 
+
     <div class="clock">
+
         EUROPE /
+
         <span id="clock">
             --:--
         </span>
+
     </div>
+
 
     <h1>
         YOUR CITY IS ASLEEP.
     </h1>
 
+
     <div class="question">
         DO YOU WANT TO START YOUR NIGHT SHIFT?
     </div>
 
+
     <div class="form-area">
+
 
         <form
             id="accessForm"
             class="form"
         >
+
 
             <div class="field">
 
@@ -1189,10 +1386,12 @@ button:hover {
                     name="email"
                     type="email"
                     autocomplete="email"
+                    maxlength="254"
                     required
                 >
 
             </div>
+
 
             <div class="field">
 
@@ -1205,50 +1404,79 @@ button:hover {
                     name="city"
                     type="text"
                     autocomplete="address-level2"
+                    maxlength="80"
                     required
                 >
 
             </div>
 
+
         </form>
 
+
         <button
+            id="submitButton"
             type="submit"
             form="accessForm"
         >
+
             REQUEST ACCESS TO SHIFT →
+
         </button>
+
 
         <div
             id="status"
             class="status"
+            aria-live="polite"
         ></div>
+
 
     </div>
 
+
 </section>
+
 
 
 <div class="corner bottom-left">
     DOCUMENTING WHAT HAPPENS AFTER DARK.
 </div>
 
+
 <div class="corner bottom-right">
     ARCHIVE NIGHT SHIFT — ALL RIGHTS RESERVED.
 </div>
 
+
 <div class="vignette"></div>
+
 <div class="scanlines"></div>
+
 
 </main>
 
 
+
+<!-- SUPABASE -->
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
 <script>
+
+
+/* =====================================================
+   CLOCK
+===================================================== */
+
 
 function updateClock() {
 
     const now =
         new Date();
+
 
     const hours =
         String(
@@ -1258,6 +1486,7 @@ function updateClock() {
             "0"
         );
 
+
     const minutes =
         String(
             now.getMinutes()
@@ -1266,13 +1495,16 @@ function updateClock() {
             "0"
         );
 
+
     document
         .getElementById("clock")
         .textContent =
         `${hours}:${minutes}`;
 }
 
+
 updateClock();
+
 
 setInterval(
     updateClock,
@@ -1280,46 +1512,198 @@ setInterval(
 );
 
 
+
+/* =====================================================
+   SUPABASE
+===================================================== */
+
+
+const SUPABASE_URL =
+    "https://kvcjemmibeserujlnzva.supabase.co";
+
+
+const SUPABASE_PUBLISHABLE_KEY =
+    "sb_publishable_MqChtogzKR4xzIR8rj7ptQ_YvF4s0N4";
+
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY
+    );
+
+
+
+/* =====================================================
+   FORM
+===================================================== */
+
+
 const form =
     document.getElementById(
         "accessForm"
     );
+
 
 const status =
     document.getElementById(
         "status"
     );
 
+
+const submitButton =
+    document.getElementById(
+        "submitButton"
+    );
+
+
+const emailInput =
+    document.getElementById(
+        "email"
+    );
+
+
+const cityInput =
+    document.getElementById(
+        "city"
+    );
+
+
+
 form.addEventListener(
     "submit",
-    function(event) {
+    async function(event) {
+
 
         event.preventDefault();
 
+
+        status.textContent = "";
+
+
         const email =
-            document
-                .getElementById("email")
+            emailInput
                 .value
-                .trim();
+                .trim()
+                .toLowerCase();
+
 
         const city =
-            document
-                .getElementById("city")
+            cityInput
                 .value
-                .trim();
+                .trim()
+                .replace(/\s+/g, " ")
+                .toUpperCase();
+
 
         if (!email || !city) {
             return;
         }
 
-        status.textContent =
-            "SIGNAL RECEIVED. YOUR CITY REMAINS ASLEEP.";
 
-        form.reset();
+        submitButton.disabled = true;
+
+        submitButton.textContent =
+            "TRANSMITTING SIGNAL...";
+
+
+        try {
+
+
+            const {
+                error
+            } =
+            await supabaseClient
+                .from("signups")
+                .insert([
+                    {
+                        email: email,
+                        city: city
+                    }
+                ]);
+
+
+            if (error) {
+
+
+                /*
+                   PostgreSQL error 23505 =
+                   duplicate unique value.
+
+                   In our case:
+                   email already registered.
+                */
+
+
+                if (
+                    error.code === "23505"
+                ) {
+
+                    status.textContent =
+                        "SIGNAL ALREADY RECEIVED.";
+
+                    form.reset();
+
+                    return;
+                }
+
+
+                console.error(
+                    "Supabase error:",
+                    error
+                );
+
+
+                status.textContent =
+                    "SIGNAL INTERRUPTED. TRY AGAIN.";
+
+                return;
+            }
+
+
+            status.textContent =
+                "SIGNAL RECEIVED. YOUR CITY REMAINS ASLEEP.";
+
+
+            form.reset();
+
+
+        }
+
+        catch (error) {
+
+
+            console.error(
+                "Connection error:",
+                error
+            );
+
+
+            status.textContent =
+                "SIGNAL INTERRUPTED. TRY AGAIN.";
+
+
+        }
+
+        finally {
+
+
+            submitButton.disabled = false;
+
+            submitButton.textContent =
+                "REQUEST ACCESS TO SHIFT →";
+
+
+        }
+
+
     }
 );
 
+
 </script>
 
+
 </body>
+
 </html>
