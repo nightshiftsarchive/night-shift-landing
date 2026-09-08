@@ -24,7 +24,7 @@
       background: #050505;
       color: #eeeae2;
       overflow: hidden;
-      font-family: "Courier New", Courier, monospace;
+      font-family: Georgia, "Times New Roman", serif;
     }
 
     .landing {
@@ -35,76 +35,71 @@
       overflow: hidden;
       background:
         radial-gradient(
-          ellipse at 50% 50%,
-          rgba(255,255,255,0.025),
-          transparent 44%
+          ellipse at 50% 48%,
+          rgba(255,255,255,.025),
+          transparent 46%
         ),
         #050505;
     }
 
-    /* ======================================================
-       REAL EUROPE MAP
-    ====================================================== */
+    /* =========================
+       MAP
+    ========================= */
 
     .map-wrap {
       position: absolute;
       left: 50%;
-      top: 51%;
+      top: 50%;
       transform: translate(-50%, -50%);
       width: min(980px, 64vw);
-      aspect-ratio: 972 / 673;
       z-index: 1;
       pointer-events: none;
     }
 
     .real-map {
-      position: absolute;
-      inset: 0;
+      display: block;
       width: 100%;
-      height: 100%;
-      object-fit: contain;
+      height: auto;
 
-      opacity: 0.36;
+      opacity: .52;
 
       filter:
         grayscale(1)
-        invert(1)
-        brightness(1.55)
-        contrast(1.45);
+        brightness(.72)
+        contrast(2.25);
 
       mix-blend-mode: screen;
     }
 
-    .map-dim {
+    .map-glow {
       position: absolute;
       inset: 0;
       background:
         radial-gradient(
           ellipse at center,
-          transparent 28%,
-          rgba(5,5,5,.18) 70%,
-          rgba(5,5,5,.5) 100%
+          rgba(255,255,255,.015),
+          transparent 45%
         );
       z-index: 2;
     }
 
-    /* ======================================================
-       CITY SIGNALS
-    ====================================================== */
+    /* =========================
+       CITY LIGHTS
+    ========================= */
 
     .city {
       position: absolute;
-      width: 4px;
-      height: 4px;
+      width: 3px;
+      height: 3px;
       border-radius: 50%;
       background: #eeeae2;
       z-index: 4;
     }
 
     .city.soft {
-      opacity: .28;
+      opacity: .22;
       box-shadow:
-        0 0 4px rgba(255,255,255,.18);
+        0 0 4px rgba(255,255,255,.22);
     }
 
     .city.main {
@@ -112,8 +107,7 @@
       box-shadow:
         0 0 4px rgba(255,255,255,.95),
         0 0 10px rgba(255,255,255,.62),
-        0 0 24px rgba(255,255,255,.3);
-
+        0 0 24px rgba(255,255,255,.28);
       animation: pulse 3.6s ease-in-out infinite;
     }
 
@@ -122,113 +116,111 @@
       position: absolute;
       left: 50%;
       top: 50%;
-      width: 16px;
-      height: 16px;
+      width: 15px;
+      height: 15px;
       transform: translate(-50%, -50%);
       border-radius: 50%;
-      border: 1px solid rgba(255,255,255,.14);
+      border: 1px solid rgba(255,255,255,.12);
     }
 
     @keyframes pulse {
       0%, 100% {
-        transform: scale(.75);
+        transform: scale(.8);
         opacity: .35;
       }
 
       50% {
-        transform: scale(1.3);
+        transform: scale(1.35);
         opacity: 1;
       }
     }
 
-    /* Approximate geographic positions on the real Europe map */
-
     .madrid {
       left: 31.5%;
-      top: 68.5%;
+      top: 68%;
       animation-delay: 0s;
     }
 
     .amsterdam {
-      left: 45.3%;
-      top: 43.5%;
+      left: 45%;
+      top: 43%;
       animation-delay: 1.2s;
     }
 
     .berlin {
-      left: 53.5%;
-      top: 42.5%;
+      left: 53.4%;
+      top: 42.2%;
       animation-delay: 2.4s;
     }
 
     .london {
-      left: 39.6%;
-      top: 42.8%;
+      left: 39.4%;
+      top: 42.5%;
     }
 
     .paris {
-      left: 41.2%;
-      top: 50.4%;
+      left: 41.1%;
+      top: 50.2%;
     }
 
     .lisbon {
-      left: 25.7%;
-      top: 69.5%;
+      left: 25.5%;
+      top: 69%;
     }
 
     .rome {
-      left: 51.1%;
-      top: 65.3%;
+      left: 51%;
+      top: 65%;
     }
 
     .vienna {
-      left: 57.1%;
-      top: 54.6%;
+      left: 57%;
+      top: 54.4%;
     }
 
     .prague {
-      left: 54.7%;
-      top: 49.6%;
+      left: 54.5%;
+      top: 49.4%;
     }
 
     .warsaw {
-      left: 60.2%;
-      top: 46.4%;
+      left: 60%;
+      top: 46.2%;
     }
 
     .copenhagen {
-      left: 51.2%;
-      top: 35.5%;
+      left: 51%;
+      top: 35.2%;
     }
 
     .oslo {
-      left: 48.3%;
-      top: 22.5%;
+      left: 48%;
+      top: 22%;
     }
 
     .stockholm {
-      left: 55.2%;
-      top: 23.2%;
+      left: 55%;
+      top: 23%;
     }
 
     .budapest {
-      left: 59.1%;
-      top: 57.3%;
+      left: 59%;
+      top: 57%;
     }
 
     .bucharest {
-      left: 66.5%;
-      top: 61.1%;
+      left: 66.2%;
+      top: 61%;
     }
 
     .athens {
-      left: 63.3%;
-      top: 73%;
+      left: 63%;
+      top: 72.7%;
     }
 
-    /* ======================================================
+    /* =========================
        CORNERS
-    ====================================================== */
+    ========================= */
 
     .corner {
       position: absolute;
@@ -243,7 +235,6 @@
     }
 
     .brand {
-      font-family: Georgia, "Times New Roman", serif;
       font-size: 12px;
       letter-spacing: 5px;
     }
@@ -258,7 +249,6 @@
     .top-right {
       top: 32px;
       right: 34px;
-      font-family: Georgia, "Times New Roman", serif;
       font-size: 8px;
       letter-spacing: 3px;
     }
@@ -266,7 +256,6 @@
     .bottom-left {
       bottom: 24px;
       left: 34px;
-      font-family: Georgia, "Times New Roman", serif;
       font-size: 7px;
       letter-spacing: 2px;
       opacity: .56;
@@ -275,15 +264,14 @@
     .bottom-right {
       bottom: 24px;
       right: 34px;
-      font-family: Georgia, "Times New Roman", serif;
       font-size: 7px;
       letter-spacing: 2px;
       opacity: .56;
     }
 
-    /* ======================================================
-       CENTRAL CONTENT
-    ====================================================== */
+    /* =========================
+       CENTER
+    ========================= */
 
     .center {
       position: absolute;
@@ -297,7 +285,6 @@
 
     .clock {
       margin-bottom: 20px;
-      font-family: Georgia, "Times New Roman", serif;
       font-size: 8px;
       letter-spacing: 4px;
       color: rgba(238,234,226,.58);
@@ -305,7 +292,6 @@
 
     h1 {
       white-space: nowrap;
-      font-family: Georgia, "Times New Roman", serif;
       font-size: clamp(26px, 2.8vw, 44px);
       font-weight: 400;
       line-height: 1;
@@ -315,16 +301,15 @@
 
     .question {
       margin-top: 18px;
-      font-family: Georgia, "Times New Roman", serif;
       font-size: 8px;
       letter-spacing: 4px;
       line-height: 1.7;
       color: rgba(238,234,226,.68);
     }
 
-    /* ======================================================
+    /* =========================
        FORM
-    ====================================================== */
+    ========================= */
 
     .form-area {
       width: min(420px, 76vw);
@@ -344,7 +329,6 @@
     .field label {
       display: block;
       margin-bottom: 7px;
-      font-family: Georgia, "Times New Roman", serif;
       font-size: 7px;
       letter-spacing: 3px;
       color: rgba(238,234,226,.5);
@@ -391,15 +375,14 @@
     .status {
       min-height: 14px;
       margin-top: 12px;
-      font-family: Georgia, "Times New Roman", serif;
       font-size: 7px;
       letter-spacing: 2px;
       color: rgba(238,234,226,.52);
     }
 
-    /* ======================================================
+    /* =========================
        TEXTURE
-    ====================================================== */
+    ========================= */
 
     .scanlines {
       position: absolute;
@@ -426,14 +409,14 @@
         radial-gradient(
           ellipse at center,
           transparent 42%,
-          rgba(0,0,0,.12) 68%,
-          rgba(0,0,0,.52) 100%
+          rgba(0,0,0,.1) 68%,
+          rgba(0,0,0,.48) 100%
         );
     }
 
-    /* ======================================================
+    /* =========================
        MOBILE
-    ====================================================== */
+    ========================= */
 
     @media (max-width: 700px) {
 
@@ -521,26 +504,21 @@
       NOT ANOTHER SOCIAL APP.
     </div>
 
-
-    <!-- REAL MAP -->
+    <!-- REAL LOCAL MAP -->
 
     <div class="map-wrap">
 
       <img
         class="real-map"
-        src="https://upload.wikimedia.org/wikipedia/commons/b/bf/Europe_blank_map.svg"
+        src="./Blank_map_of_Europe_1839.svg"
         alt=""
       >
 
-      <div class="map-dim"></div>
-
-      <!-- MAIN SIGNALS -->
+      <div class="map-glow"></div>
 
       <span class="city main madrid"></span>
       <span class="city main amsterdam"></span>
       <span class="city main berlin"></span>
-
-      <!-- SOFTER CAPITALS -->
 
       <span class="city soft london"></span>
       <span class="city soft paris"></span>
@@ -557,7 +535,6 @@
       <span class="city soft athens"></span>
 
     </div>
-
 
     <!-- CONTENT -->
 
@@ -582,8 +559,8 @@
           <div class="field">
             <label for="email">EMAIL</label>
             <input
-              type="email"
               id="email"
+              type="email"
               autocomplete="email"
               required
             >
@@ -592,8 +569,8 @@
           <div class="field">
             <label for="city">CITY</label>
             <input
-              type="text"
               id="city"
+              type="text"
               autocomplete="address-level2"
               required
             >
@@ -611,7 +588,6 @@
 
     </section>
 
-
     <div class="corner bottom-left">
       DOCUMENTING WHAT HAPPENS AFTER DARK.
     </div>
@@ -620,19 +596,14 @@
       ARCHIVE NIGHT SHIFT — ALL RIGHTS RESERVED.
     </div>
 
-
     <div class="vignette"></div>
     <div class="scanlines"></div>
 
   </main>
 
-
   <script>
 
-    /* LIVE CLOCK */
-
     function updateClock() {
-
       const now = new Date();
 
       const hours =
@@ -645,15 +616,11 @@
         .getElementById("clock")
         .textContent =
         `${hours}:${minutes}`;
-
     }
 
     updateClock();
-
     setInterval(updateClock, 1000);
 
-
-    /* TEMPORARY FORM */
 
     const form =
       document.getElementById("accessForm");
@@ -662,7 +629,6 @@
       document.getElementById("status");
 
     form.addEventListener("submit", function(event) {
-
       event.preventDefault();
 
       const email =
@@ -679,7 +645,6 @@
         "REQUEST RECEIVED. WE'LL WAKE YOU WHEN YOUR CITY DOES.";
 
       form.reset();
-
     });
 
   </script>
