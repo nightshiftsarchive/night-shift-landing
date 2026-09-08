@@ -2,17 +2,12 @@
 <html lang="en">
 
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>NIGHT SHIFT</title>
 
 <style>
-
-/* =========================================================
-   RESET
-========================================================= */
 
 * {
     margin: 0;
@@ -23,232 +18,98 @@
 html,
 body {
     width: 100%;
-    min-height: 100%;
+    height: 100%;
 }
 
 body {
     background: #030303;
     color: #eeeae2;
     overflow: hidden;
-
-    font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
+    font-family: Georgia, "Times New Roman", serif;
 }
 
-
-/* =========================================================
-   PAGE
-========================================================= */
-
 .landing {
-
     position: relative;
-
     width: 100vw;
     height: 100vh;
-
     min-height: 640px;
-
     overflow: hidden;
 
     background:
         radial-gradient(
-            ellipse at 58% 48%,
+            ellipse at center,
             rgba(255,255,255,.018),
-            transparent 42%
+            transparent 44%
         ),
         #030303;
 }
 
 
-/* =========================================================
-   CORNER ELEMENTS
-========================================================= */
+/* =====================================================
+   HEADER / FOOTER
+===================================================== */
 
 .corner {
-
     position: absolute;
-
     z-index: 30;
-
     text-transform: uppercase;
-
-    color:
-        rgba(238,234,226,.66);
+    color: rgba(238,234,226,.66);
 }
-
 
 .top-left {
-
     top: 28px;
     left: 32px;
-
 }
-
 
 .brand {
-
     font-size: 11px;
-
     letter-spacing: 5px;
-
 }
-
 
 .hours {
-
     margin-top: 6px;
-
     font-size: 6px;
-
     letter-spacing: 3px;
-
     opacity: .58;
-
 }
-
 
 .top-right {
-
     top: 31px;
     right: 32px;
-
     font-size: 7px;
-
     letter-spacing: 3px;
-
 }
-
 
 .bottom-left {
-
     bottom: 23px;
     left: 32px;
-
     font-size: 6px;
-
     letter-spacing: 2px;
-
     opacity: .45;
-
 }
-
 
 .bottom-right {
-
     bottom: 23px;
     right: 32px;
-
     font-size: 6px;
-
     letter-spacing: 2px;
-
     opacity: .45;
-
 }
 
 
-/* =========================================================
-   LEFT CITY INDEX
-========================================================= */
-
-.city-index {
-
-    position: absolute;
-
-    left: 5.5vw;
-    top: 50%;
-
-    transform: translateY(-50%);
-
-    width: 165px;
-
-    z-index: 15;
-
-    text-transform: uppercase;
-}
-
-
-.city-index-title {
-
-    margin-bottom: 20px;
-
-    padding-bottom: 10px;
-
-    border-bottom:
-        1px solid
-        rgba(238,234,226,.14);
-
-    font-size: 7px;
-
-    letter-spacing: 3px;
-
-    color:
-        rgba(238,234,226,.58);
-}
-
-
-.city-index-title .inactive {
-
-    color:
-        rgba(238,234,226,.28);
-}
-
-
-.city-list {
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 9px;
-
-    list-style: none;
-}
-
-
-.city-list li {
-
-    font-size: 7px;
-
-    letter-spacing: 2.4px;
-
-    color:
-        rgba(238,234,226,.28);
-
-    transition:
-        color .3s ease;
-}
-
-
-.city-list li:hover {
-
-    color:
-        rgba(238,234,226,.7);
-}
-
-
-/* =========================================================
-   INVISIBLE EUROPE / CITY CONSTELLATION
-========================================================= */
+/* =====================================================
+   CITY CONSTELLATION
+===================================================== */
 
 .constellation {
-
     position: absolute;
-
-    left: 56%;
+    left: 50%;
     top: 50%;
 
-    transform:
-        translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 
-    width:
-        min(760px, 54vw);
-
-    height:
-        min(560px, 66vh);
+    width: min(900px, 62vw);
+    height: min(620px, 70vh);
 
     z-index: 2;
 
@@ -256,52 +117,60 @@ body {
 }
 
 
-/* =========================================================
-   INDIVIDUAL CITY NODE
-========================================================= */
+/* =====================================================
+   CITY SIGNAL
+===================================================== */
 
 .node {
-
     position: absolute;
 
     display: flex;
-
     align-items: center;
 
     gap: 8px;
 
     white-space: nowrap;
 
-    opacity: .42;
+    opacity: .28;
+
+    animation:
+        nodeFade
+        var(--duration, 5s)
+        ease-in-out
+        infinite;
+
+    animation-delay:
+        var(--delay, 0s);
 }
 
 
 .node-dot {
-
     position: relative;
-
-    display: block;
 
     width: 3px;
     height: 3px;
 
-    flex: 0 0 3px;
-
     border-radius: 50%;
 
     background:
-        rgba(238,234,226,.56);
+        rgba(245,242,235,.72);
 
     box-shadow:
         0 0 4px
-        rgba(255,255,255,.16);
+        rgba(255,255,255,.28);
+
+    animation:
+        dotGlow
+        var(--duration, 5s)
+        ease-in-out
+        infinite;
+
+    animation-delay:
+        var(--delay, 0s);
 }
 
 
-/* faint dormant ring */
-
 .node-dot::after {
-
     content: "";
 
     position: absolute;
@@ -309,167 +178,344 @@ body {
     left: 50%;
     top: 50%;
 
-    width: 11px;
-    height: 11px;
+    width: 10px;
+    height: 10px;
 
     transform:
-        translate(-50%, -50%);
+        translate(-50%, -50%)
+        scale(.3);
 
     border-radius: 50%;
 
     border:
         1px solid
-        rgba(238,234,226,.05);
+        rgba(245,242,235,.12);
+
+    opacity: 0;
+
+    animation:
+        signalRing
+        var(--duration, 5s)
+        ease-out
+        infinite;
+
+    animation-delay:
+        var(--delay, 0s);
 }
 
 
 .node-name {
-
     font-size: 6px;
 
     letter-spacing: 2.1px;
 
     color:
-        rgba(238,234,226,.38);
+        rgba(238,234,226,.34);
 
     text-transform: uppercase;
+
+    text-shadow:
+        0 0 0
+        rgba(255,255,255,0);
+
+    animation:
+        nameSignal
+        var(--duration, 5s)
+        ease-in-out
+        infinite;
+
+    animation-delay:
+        var(--delay, 0s);
 }
 
 
-/* =========================================================
+/* =====================================================
+   SIGNAL ANIMATIONS
+===================================================== */
+
+@keyframes nodeFade {
+
+    0%,
+    100% {
+        opacity: .18;
+    }
+
+    45% {
+        opacity: .34;
+    }
+
+    55% {
+        opacity: .48;
+    }
+
+    65% {
+        opacity: .28;
+    }
+
+}
+
+
+@keyframes dotGlow {
+
+    0%,
+    100% {
+        transform: scale(.75);
+
+        box-shadow:
+            0 0 3px
+            rgba(255,255,255,.15);
+    }
+
+    50% {
+        transform: scale(1.6);
+
+        box-shadow:
+            0 0 5px
+            rgba(255,255,255,.8),
+            0 0 12px
+            rgba(255,255,255,.35),
+            0 0 22px
+            rgba(255,255,255,.12);
+    }
+
+}
+
+
+@keyframes signalRing {
+
+    0% {
+        transform:
+            translate(-50%, -50%)
+            scale(.25);
+
+        opacity: 0;
+    }
+
+    36% {
+        opacity: 0;
+    }
+
+    48% {
+        opacity: .28;
+    }
+
+    74% {
+        transform:
+            translate(-50%, -50%)
+            scale(2.2);
+
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+    }
+
+}
+
+
+@keyframes nameSignal {
+
+    0%,
+    100% {
+        color:
+            rgba(238,234,226,.22);
+
+        text-shadow:
+            0 0 0
+            rgba(255,255,255,0);
+    }
+
+    44% {
+        color:
+            rgba(238,234,226,.34);
+    }
+
+    53% {
+        color:
+            rgba(245,242,235,.68);
+
+        text-shadow:
+            0 0 7px
+            rgba(255,255,255,.18);
+    }
+
+    65% {
+        color:
+            rgba(238,234,226,.32);
+
+        text-shadow:
+            0 0 0
+            rgba(255,255,255,0);
+    }
+
+}
+
+
+/* =====================================================
    CITY POSITIONS
-
-   Approximate relative geographic layout of Europe.
-========================================================= */
-
-
-/* NORTH */
+===================================================== */
 
 .oslo {
-    left: 50%;
-    top: 3%;
+    left: 48%;
+    top: 2%;
+
+    --delay: .2s;
+    --duration: 6.2s;
 }
 
 .stockholm {
-    left: 62%;
+    left: 60%;
     top: 7%;
+
+    --delay: 2.1s;
+    --duration: 7s;
 }
 
 .copenhagen {
     left: 51%;
     top: 20%;
+
+    --delay: 1.2s;
+    --duration: 5.4s;
 }
 
-
-/* NORTH-WEST */
-
 .london {
-    left: 23%;
-    top: 28%;
+    left: 22%;
+    top: 29%;
+
+    --delay: 3.4s;
+    --duration: 6.7s;
 }
 
 .amsterdam {
     left: 38%;
-    top: 30%;
+    top: 31%;
+
+    --delay: .8s;
+    --duration: 5.8s;
 }
 
 .berlin {
-    left: 53%;
-    top: 30%;
+    left: 54%;
+    top: 31%;
+
+    --delay: 2.8s;
+    --duration: 6.1s;
 }
-
-
-/* WEST */
 
 .paris {
-    left: 29%;
-    top: 41%;
+    left: 30%;
+    top: 42%;
+
+    --delay: 4.1s;
+    --duration: 7.3s;
 }
 
-
-/* CENTRAL */
-
 .prague {
-    left: 55%;
-    top: 42%;
+    left: 56%;
+    top: 43%;
+
+    --delay: 1.7s;
+    --duration: 6.4s;
 }
 
 .vienna {
-    left: 57%;
-    top: 51%;
+    left: 58%;
+    top: 52%;
+
+    --delay: 3.1s;
+    --duration: 5.9s;
 }
 
 .warsaw {
     left: 69%;
-    top: 36%;
+    top: 37%;
+
+    --delay: .4s;
+    --duration: 6.8s;
 }
 
 .budapest {
-    left: 62%;
-    top: 58%;
+    left: 63%;
+    top: 59%;
+
+    --delay: 2.3s;
+    --duration: 7.1s;
 }
 
-
-/* SOUTH-WEST */
-
 .lisbon {
-    left: 7%;
-    top: 68%;
+    left: 6%;
+    top: 69%;
+
+    --delay: 3.8s;
+    --duration: 6.6s;
 }
 
 .madrid {
     left: 20%;
     top: 65%;
+
+    --delay: 1s;
+    --duration: 5.6s;
 }
 
 .barcelona {
-    left: 29%;
+    left: 30%;
     top: 70%;
+
+    --delay: 4.5s;
+    --duration: 7.4s;
 }
-
-
-/* SOUTH */
 
 .milan {
     left: 45%;
     top: 66%;
+
+    --delay: 2s;
+    --duration: 6s;
 }
 
 .rome {
     left: 49%;
-    top: 77%;
+    top: 78%;
+
+    --delay: .6s;
+    --duration: 6.9s;
 }
 
-
-/* EAST / SOUTH-EAST */
-
 .bucharest {
-    left: 76%;
-    top: 64%;
+    left: 77%;
+    top: 65%;
+
+    --delay: 3.6s;
+    --duration: 7.2s;
 }
 
 .athens {
     left: 69%;
-    top: 87%;
+    top: 88%;
+
+    --delay: 1.5s;
+    --duration: 6.3s;
 }
 
 
-/* =========================================================
-   MAIN CONTENT
-========================================================= */
+/* =====================================================
+   CENTRAL CONTENT
+===================================================== */
 
 .content {
-
     position: absolute;
 
-    left: 57%;
+    left: 50%;
     top: 49%;
 
     transform:
         translate(-50%, -50%);
 
     width:
-        min(700px, 60vw);
+        min(720px, 72vw);
 
     text-align: center;
 
@@ -477,12 +523,7 @@ body {
 }
 
 
-/* =========================================================
-   CLOCK
-========================================================= */
-
 .clock {
-
     margin-bottom: 20px;
 
     font-size: 7px;
@@ -494,19 +535,14 @@ body {
 }
 
 
-/* =========================================================
-   HEADLINE
-========================================================= */
-
 h1 {
-
     white-space: nowrap;
 
     font-size:
         clamp(
-            26px,
-            2.65vw,
-            43px
+            27px,
+            2.8vw,
+            46px
         );
 
     font-weight: 400;
@@ -519,12 +555,7 @@ h1 {
 }
 
 
-/* =========================================================
-   QUESTION
-========================================================= */
-
 .question {
-
     margin-top: 18px;
 
     font-size: 7px;
@@ -536,16 +567,15 @@ h1 {
 }
 
 
-/* =========================================================
+/* =====================================================
    FORM
-========================================================= */
+===================================================== */
 
 .form-area {
-
     width:
         min(
             410px,
-            72vw
+            74vw
         );
 
     margin:
@@ -556,7 +586,6 @@ h1 {
 
 
 .form {
-
     display: grid;
 
     grid-template-columns:
@@ -568,13 +597,11 @@ h1 {
 
 
 .field {
-
     text-align: left;
 }
 
 
 .field label {
-
     display: block;
 
     margin-bottom: 7px;
@@ -589,7 +616,6 @@ h1 {
 
 
 .field input {
-
     width: 100%;
 
     border: none;
@@ -621,18 +647,12 @@ h1 {
 
 
 .field input:focus {
-
     border-bottom-color:
         rgba(238,234,226,.82);
 }
 
 
-/* =========================================================
-   BUTTON
-========================================================= */
-
 button {
-
     width: 100%;
 
     height: 37px;
@@ -644,7 +664,7 @@ button {
         rgba(238,234,226,.32);
 
     background:
-        rgba(3,3,3,.72);
+        rgba(3,3,3,.76);
 
     color: #eeeae2;
 
@@ -667,7 +687,6 @@ button {
 
 
 button:hover {
-
     background: #eeeae2;
 
     color: #030303;
@@ -676,12 +695,7 @@ button:hover {
 }
 
 
-/* =========================================================
-   STATUS
-========================================================= */
-
 .status {
-
     min-height: 13px;
 
     margin-top: 11px;
@@ -695,12 +709,11 @@ button:hover {
 }
 
 
-/* =========================================================
-   VISUAL TEXTURE
-========================================================= */
+/* =====================================================
+   TEXTURE
+===================================================== */
 
 .vignette {
-
     position: absolute;
 
     inset: 0;
@@ -711,16 +724,15 @@ button:hover {
 
     background:
         radial-gradient(
-            ellipse at 55% 48%,
-            transparent 46%,
-            rgba(0,0,0,.06) 67%,
+            ellipse at center,
+            transparent 48%,
+            rgba(0,0,0,.08) 72%,
             rgba(0,0,0,.42) 100%
         );
 }
 
 
 .scanlines {
-
     position: absolute;
 
     inset: 0;
@@ -742,143 +754,66 @@ button:hover {
 }
 
 
-/* =========================================================
-   TABLET
-========================================================= */
-
-@media (max-width: 1000px) {
-
-    .city-index {
-
-        left: 35px;
-
-    }
-
-
-    .constellation {
-
-        left: 59%;
-
-        width: 68vw;
-
-        opacity: .7;
-
-    }
-
-
-    .content {
-
-        left: 57%;
-
-    }
-
-}
-
-
-/* =========================================================
+/* =====================================================
    MOBILE
-========================================================= */
+===================================================== */
 
 @media (max-width: 700px) {
 
     body {
-
         overflow-y: auto;
-
     }
 
 
     .landing {
-
-        width: 100%;
-
         height: auto;
 
         min-height: 100svh;
 
-        overflow: hidden;
-
         padding:
-            125px
-            22px
-            80px;
-
+            130px
+            20px
+            90px;
     }
 
 
-    /* -----------------------------------------
-       HEADER
-    ----------------------------------------- */
-
     .top-left {
-
-        top: 22px;
         left: 20px;
-
+        top: 21px;
     }
 
 
     .top-right {
-
-        top: 24px;
         right: 20px;
+        top: 23px;
 
         max-width: 135px;
 
         text-align: right;
 
         line-height: 1.5;
-
     }
 
 
-    /* -----------------------------------------
-       CITY CONSTELLATION
-    ----------------------------------------- */
-
     .constellation {
-
-        position: absolute;
-
         left: 50%;
-        top: 39%;
+        top: 46%;
 
-        transform:
-            translate(-50%, -50%);
+        width: 120vw;
+        height: 520px;
 
-        width: 115vw;
-        height: 440px;
-
-        opacity: .42;
-
+        opacity: .58;
     }
 
 
     .node-name {
-
         font-size: 5px;
 
-        letter-spacing: 1.5px;
-
+        letter-spacing: 1.4px;
     }
 
-
-    .node-dot {
-
-        width: 2px;
-        height: 2px;
-
-        flex-basis: 2px;
-
-    }
-
-
-    /* -----------------------------------------
-       MAIN
-    ----------------------------------------- */
 
     .content {
-
         position: relative;
 
         left: auto;
@@ -888,23 +823,17 @@ button:hover {
 
         width: 100%;
 
-        margin-top: 70px;
-
+        margin-top: 80px;
     }
 
 
     .clock {
-
         margin-bottom: 18px;
-
     }
 
 
     h1 {
-
         white-space: normal;
-
-        width: 100%;
 
         max-width: 360px;
 
@@ -912,18 +841,16 @@ button:hover {
 
         font-size:
             clamp(
-                29px,
+                30px,
                 9vw,
-                39px
+                40px
             );
 
         line-height: 1.08;
-
     }
 
 
     .question {
-
         max-width: 310px;
 
         margin:
@@ -933,144 +860,63 @@ button:hover {
 
         font-size: 7px;
 
-        line-height: 1.7;
-
         letter-spacing: 3px;
 
+        line-height: 1.7;
     }
 
 
-    /* -----------------------------------------
-       FORM
-    ----------------------------------------- */
-
     .form-area {
-
         width: 100%;
 
         max-width: 360px;
 
         margin-top: 38px;
-
     }
 
 
     .form {
-
         grid-template-columns: 1fr;
 
         gap: 24px;
-
     }
 
 
     button {
-
         height: 42px;
 
         margin-top: 26px;
-
     }
 
-
-    /* -----------------------------------------
-       CITY INDEX ON MOBILE
-    ----------------------------------------- */
-
-    .city-index {
-
-        position: relative;
-
-        left: auto;
-        top: auto;
-
-        transform: none;
-
-        width: 100%;
-
-        max-width: 360px;
-
-        margin:
-            80px
-            auto
-            40px;
-
-        z-index: 15;
-
-    }
-
-
-    .city-index-title {
-
-        margin-bottom: 18px;
-
-    }
-
-
-    .city-list {
-
-        display: grid;
-
-        grid-template-columns:
-            1fr
-            1fr;
-
-        gap:
-            12px
-            30px;
-
-    }
-
-
-    .city-list li {
-
-        font-size: 7px;
-
-    }
-
-
-    /* -----------------------------------------
-       FOOTER
-    ----------------------------------------- */
 
     .bottom-left {
-
         position: relative;
 
         left: auto;
         bottom: auto;
 
-        margin-top: 30px;
+        margin-top: 80px;
 
         text-align: center;
 
         line-height: 1.6;
-
     }
 
 
     .bottom-right {
-
         display: none;
-
     }
 
 }
 
 </style>
-
 </head>
 
 
 <body>
 
-
 <main class="landing">
 
-
-<!-- =====================================================
-     BRAND
-===================================================== -->
 
 <div class="corner top-left">
 
@@ -1086,256 +932,123 @@ button:hover {
 
 
 <div class="corner top-right">
-
     NOT ANOTHER SOCIAL APP.
-
 </div>
 
 
 
 <!-- =====================================================
-     LEFT EUROPE STATUS
-===================================================== -->
-
-<aside class="city-index">
-
-    <div class="city-index-title">
-
-        EUROPE |
-        <span class="inactive">
-            INACTIVE
-        </span>
-
-    </div>
-
-
-    <ul class="city-list">
-
-        <li>BERLIN</li>
-        <li>AMSTERDAM</li>
-        <li>LONDON</li>
-        <li>PARIS</li>
-        <li>MADRID</li>
-        <li>BARCELONA</li>
-        <li>LISBON</li>
-        <li>MILAN</li>
-        <li>ROME</li>
-        <li>PRAGUE</li>
-        <li>VIENNA</li>
-        <li>COPENHAGEN</li>
-        <li>WARSAW</li>
-        <li>BUDAPEST</li>
-        <li>BUCHAREST</li>
-        <li>ATHENS</li>
-
-    </ul>
-
-</aside>
-
-
-
-<!-- =====================================================
-     CITY SIGNAL CONSTELLATION
+     CITY SIGNALS
 ===================================================== -->
 
 <div class="constellation">
 
 
     <div class="node oslo">
-
         <span class="node-dot"></span>
-
-        <span class="node-name">
-            OSLO
-        </span>
-
+        <span class="node-name">OSLO</span>
     </div>
 
 
     <div class="node stockholm">
-
         <span class="node-dot"></span>
-
-        <span class="node-name">
-            STOCKHOLM
-        </span>
-
+        <span class="node-name">STOCKHOLM</span>
     </div>
 
 
     <div class="node copenhagen">
-
         <span class="node-dot"></span>
-
-        <span class="node-name">
-            COPENHAGEN
-        </span>
-
+        <span class="node-name">COPENHAGEN</span>
     </div>
 
 
     <div class="node london">
-
         <span class="node-dot"></span>
-
-        <span class="node-name">
-            LONDON
-        </span>
-
+        <span class="node-name">LONDON</span>
     </div>
 
 
     <div class="node amsterdam">
-
         <span class="node-dot"></span>
-
-        <span class="node-name">
-            AMSTERDAM
-        </span>
-
+        <span class="node-name">AMSTERDAM</span>
     </div>
 
 
     <div class="node berlin">
-
         <span class="node-dot"></span>
-
-        <span class="node-name">
-            BERLIN
-        </span>
-
+        <span class="node-name">BERLIN</span>
     </div>
 
 
     <div class="node paris">
-
         <span class="node-dot"></span>
-
-        <span class="node-name">
-            PARIS
-        </span>
-
+        <span class="node-name">PARIS</span>
     </div>
 
 
     <div class="node prague">
-
         <span class="node-dot"></span>
-
-        <span class="node-name">
-            PRAGUE
-        </span>
-
+        <span class="node-name">PRAGUE</span>
     </div>
 
 
     <div class="node vienna">
-
         <span class="node-dot"></span>
-
-        <span class="node-name">
-            VIENNA
-        </span>
-
+        <span class="node-name">VIENNA</span>
     </div>
 
 
     <div class="node warsaw">
-
         <span class="node-dot"></span>
-
-        <span class="node-name">
-            WARSAW
-        </span>
-
-    </div>
-
-
-    <div class="node lisbon">
-
-        <span class="node-dot"></span>
-
-        <span class="node-name">
-            LISBON
-        </span>
-
-    </div>
-
-
-    <div class="node madrid">
-
-        <span class="node-dot"></span>
-
-        <span class="node-name">
-            MADRID
-        </span>
-
-    </div>
-
-
-    <div class="node barcelona">
-
-        <span class="node-dot"></span>
-
-        <span class="node-name">
-            BARCELONA
-        </span>
-
-    </div>
-
-
-    <div class="node milan">
-
-        <span class="node-dot"></span>
-
-        <span class="node-name">
-            MILAN
-        </span>
-
-    </div>
-
-
-    <div class="node rome">
-
-        <span class="node-dot"></span>
-
-        <span class="node-name">
-            ROME
-        </span>
-
+        <span class="node-name">WARSAW</span>
     </div>
 
 
     <div class="node budapest">
-
         <span class="node-dot"></span>
+        <span class="node-name">BUDAPEST</span>
+    </div>
 
-        <span class="node-name">
-            BUDAPEST
-        </span>
 
+    <div class="node lisbon">
+        <span class="node-dot"></span>
+        <span class="node-name">LISBON</span>
+    </div>
+
+
+    <div class="node madrid">
+        <span class="node-dot"></span>
+        <span class="node-name">MADRID</span>
+    </div>
+
+
+    <div class="node barcelona">
+        <span class="node-dot"></span>
+        <span class="node-name">BARCELONA</span>
+    </div>
+
+
+    <div class="node milan">
+        <span class="node-dot"></span>
+        <span class="node-name">MILAN</span>
+    </div>
+
+
+    <div class="node rome">
+        <span class="node-dot"></span>
+        <span class="node-name">ROME</span>
     </div>
 
 
     <div class="node bucharest">
-
         <span class="node-dot"></span>
-
-        <span class="node-name">
-            BUCHAREST
-        </span>
-
+        <span class="node-name">BUCHAREST</span>
     </div>
 
 
     <div class="node athens">
-
         <span class="node-dot"></span>
-
-        <span class="node-name">
-            ATHENS
-        </span>
-
+        <span class="node-name">ATHENS</span>
     </div>
 
 
@@ -1360,21 +1073,14 @@ button:hover {
     </div>
 
 
-
     <h1>
-
         YOUR CITY IS ASLEEP.
-
     </h1>
 
 
-
     <div class="question">
-
         DO YOU WANT TO START YOUR NIGHT SHIFT?
-
     </div>
-
 
 
     <div class="form-area">
@@ -1389,9 +1095,7 @@ button:hover {
             <div class="field">
 
                 <label for="email">
-
                     EMAIL
-
                 </label>
 
                 <input
@@ -1405,13 +1109,10 @@ button:hover {
             </div>
 
 
-
             <div class="field">
 
                 <label for="city">
-
                     CITY
-
                 </label>
 
                 <input
@@ -1428,7 +1129,6 @@ button:hover {
         </form>
 
 
-
         <button
             type="submit"
             form="accessForm"
@@ -1437,7 +1137,6 @@ button:hover {
             REQUEST ACCESS TO SHIFT →
 
         </button>
-
 
 
         <div
@@ -1453,23 +1152,14 @@ button:hover {
 
 
 
-<!-- =====================================================
-     FOOTER
-===================================================== -->
-
 <div class="corner bottom-left">
-
     DOCUMENTING WHAT HAPPENS AFTER DARK.
-
 </div>
 
 
 <div class="corner bottom-right">
-
     ARCHIVE NIGHT SHIFT — ALL RIGHTS RESERVED.
-
 </div>
-
 
 
 <div class="vignette"></div>
@@ -1482,11 +1172,6 @@ button:hover {
 
 
 <script>
-
-
-/* =========================================================
-   LIVE CLOCK
-========================================================= */
 
 function updateClock() {
 
@@ -1529,10 +1214,6 @@ setInterval(
 );
 
 
-
-/* =========================================================
-   TEMPORARY FORM
-========================================================= */
 
 const form =
     document.getElementById(
@@ -1580,7 +1261,6 @@ form.addEventListener(
 
     }
 );
-
 
 </script>
 
