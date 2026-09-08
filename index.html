@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>NIGHT SHIFT — Archive the Night</title>
 
   <style>
+
+    /* =========================================================
+       RESET
+    ========================================================= */
+
     * {
       margin: 0;
       padding: 0;
@@ -16,455 +22,1201 @@
     html,
     body {
       width: 100%;
-      height: 100%;
-      background: #030303;
-      color: #f1f1ed;
-      font-family: "Courier New", Courier, monospace;
+      min-height: 100%;
     }
 
     body {
+      background: #050505;
+      color: #eeeae2;
+      font-family: Georgia, "Times New Roman", serif;
       overflow: hidden;
     }
 
+
+    /* =========================================================
+       MAIN SCREEN
+    ========================================================= */
+
     .landing {
       position: relative;
-      width: 100%;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+
+      width: 100vw;
+      height: 100vh;
+
+      min-height: 650px;
+
+      overflow: hidden;
+
       background:
         radial-gradient(
-          circle at 50% 45%,
+          circle at center,
           rgba(255,255,255,0.025),
-          transparent 35%
+          transparent 48%
         ),
-        #030303;
-      isolation: isolate;
+        #050505;
     }
 
-    /* MAP BACKGROUND */
 
-    .map {
+    /* =========================================================
+       MAP
+    ========================================================= */
+
+    .europe-map {
       position: absolute;
-      width: min(1000px, 88vw);
-      height: auto;
+
       left: 50%;
-      top: 50%;
+      top: 52%;
+
       transform: translate(-50%, -50%);
-      opacity: 0.38;
-      z-index: -2;
+
+      width: 82vw;
+      max-width: 1450px;
+
+      opacity: 0.42;
+
+      z-index: 0;
     }
 
-    .continent {
-      fill: rgba(255,255,255,0.013);
-      stroke: rgba(255,255,255,0.09);
-      stroke-width: 1;
+
+    .map-land {
+      fill: rgba(255,255,255,0.008);
+
+      stroke: rgba(238,234,226,0.15);
+      stroke-width: 0.9;
+
       vector-effect: non-scaling-stroke;
     }
 
-    .city {
-      fill: #e8e8df;
-      opacity: 0.25;
-    }
 
-    .city.active {
-      opacity: 0.95;
+    /* =========================================================
+       CITY LIGHTS
+    ========================================================= */
+
+    .city-light {
+      fill: #eeeae2;
+
+      opacity: 0.22;
+
       filter:
-        drop-shadow(0 0 4px rgba(255,255,255,0.85))
-        drop-shadow(0 0 10px rgba(255,255,255,0.45));
-      animation: pulse 3.2s infinite ease-in-out;
+        drop-shadow(0 0 2px rgba(255,255,255,.25));
     }
 
-    .city.delay-1 { animation-delay: .7s; }
-    .city.delay-2 { animation-delay: 1.3s; }
-    .city.delay-3 { animation-delay: 2s; }
-    .city.delay-4 { animation-delay: 2.6s; }
 
-    @keyframes pulse {
-      0%, 100% {
-        opacity: 0.35;
-        r: 2.2;
+    .city-light.medium {
+      opacity: 0.38;
+
+      filter:
+        drop-shadow(0 0 4px rgba(255,255,255,.35));
+    }
+
+
+    .city-light.main {
+      opacity: 0.95;
+
+      filter:
+        drop-shadow(0 0 4px rgba(255,255,255,.9))
+        drop-shadow(0 0 12px rgba(255,255,255,.55))
+        drop-shadow(0 0 25px rgba(255,255,255,.25));
+
+      animation: cityPulse 3.5s ease-in-out infinite;
+    }
+
+
+    .amsterdam {
+      animation-delay: 0s;
+    }
+
+    .berlin {
+      animation-delay: 1.1s;
+    }
+
+    .madrid {
+      animation-delay: 2.2s;
+    }
+
+
+    @keyframes cityPulse {
+
+      0%,
+      100% {
+        opacity: .45;
+        r: 3;
       }
 
       50% {
         opacity: 1;
-        r: 3.2;
+        r: 5;
       }
+
     }
 
-    /* OVERLAY */
 
-    .noise {
+    /* =========================================================
+       CITY LABELS
+    ========================================================= */
+
+    .city-label {
+      font-family: Georgia, serif;
+
+      fill: rgba(238,234,226,.64);
+
+      font-size: 12px;
+
+      letter-spacing: 4px;
+    }
+
+
+    /* =========================================================
+       CORNERS
+    ========================================================= */
+
+    .corner {
       position: absolute;
-      inset: 0;
-      pointer-events: none;
-      z-index: 5;
-      opacity: 0.035;
-      background-image:
-        repeating-linear-gradient(
-          0deg,
-          rgba(255,255,255,0.4) 0px,
-          rgba(255,255,255,0.4) 1px,
-          transparent 1px,
-          transparent 3px
-        );
+
+      z-index: 10;
+
+      font-size: 11px;
+
+      letter-spacing: 4px;
+
+      text-transform: uppercase;
+
+      line-height: 1.7;
+
+      color: rgba(238,234,226,.82);
     }
 
-    /* CONTENT */
+
+    .top-left {
+      top: 35px;
+      left: 42px;
+    }
+
+
+    .top-left strong {
+      display: block;
+
+      font-weight: normal;
+
+      font-size: 14px;
+
+      letter-spacing: 6px;
+    }
+
+
+    .top-left span {
+      display: block;
+
+      margin-top: 3px;
+
+      font-size: 9px;
+
+      letter-spacing: 4px;
+
+      opacity: .72;
+    }
+
+
+    .top-right {
+      top: 42px;
+      right: 42px;
+
+      font-size: 10px;
+    }
+
+
+    .bottom-left {
+      bottom: 30px;
+      left: 42px;
+
+      font-size: 9px;
+
+      letter-spacing: 3px;
+
+      opacity: .66;
+    }
+
+
+    .bottom-right {
+      bottom: 30px;
+      right: 42px;
+
+      font-size: 9px;
+
+      letter-spacing: 3px;
+
+      opacity: .66;
+    }
+
+
+    /* =========================================================
+       CENTRAL CONTENT
+    ========================================================= */
 
     .content {
-      width: min(720px, 88vw);
+      position: absolute;
+
+      left: 50%;
+      top: 47%;
+
+      transform: translate(-50%, -50%);
+
+      width: min(1100px, 88vw);
+
       text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      z-index: 2;
+
+      z-index: 5;
     }
 
-    .micro {
-      font-size: 10px;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.42);
-      margin-bottom: 34px;
+
+    /* =========================================================
+       CLOCK
+    ========================================================= */
+
+    .clock {
+      margin-bottom: 38px;
+
+      font-size: 11px;
+
+      letter-spacing: 5px;
+
+      color: rgba(238,234,226,.62);
     }
+
+
+    /* =========================================================
+       HEADLINE
+    ========================================================= */
 
     h1 {
-      font-size: clamp(38px, 5.2vw, 76px);
-      line-height: 0.98;
+      white-space: nowrap;
+
       font-weight: 400;
-      letter-spacing: -0.05em;
-      margin-bottom: 28px;
+
+      font-size: clamp(42px, 5.4vw, 90px);
+
+      letter-spacing: .04em;
+
+      line-height: 1;
+
+      color: #eeeae2;
+
+      text-shadow:
+        0 0 20px rgba(255,255,255,.04);
     }
+
 
     .question {
-      font-size: clamp(12px, 1.25vw, 16px);
-      letter-spacing: 0.15em;
-      line-height: 1.6;
+      margin-top: 30px;
+
+      font-size: 12px;
+
+      letter-spacing: 6px;
+
+      color: rgba(238,234,226,.78);
+
       text-transform: uppercase;
-      color: rgba(255,255,255,0.63);
-      margin-bottom: 43px;
     }
 
-    /* FORM */
+
+    /* =========================================================
+       FORM
+    ========================================================= */
+
+    .form-wrapper {
+      width: min(660px, 90vw);
+
+      margin: 70px auto 0;
+    }
+
 
     .access-form {
-      width: min(570px, 100%);
       display: grid;
-      grid-template-columns: 1fr 0.72fr;
-      border-top: 1px solid rgba(255,255,255,0.22);
-      border-bottom: 1px solid rgba(255,255,255,0.22);
+
+      grid-template-columns: 1fr 1fr;
+
+      gap: 26px;
     }
+
 
     .field {
       position: relative;
-      border-right: 1px solid rgba(255,255,255,0.22);
     }
 
-    .field:last-of-type {
-      border-right: none;
+
+    .field label {
+      display: block;
+
+      text-align: left;
+
+      margin-bottom: 12px;
+
+      font-size: 9px;
+
+      letter-spacing: 4px;
+
+      color: rgba(238,234,226,.58);
     }
 
-    input {
+
+    .field input {
       width: 100%;
-      height: 62px;
-      background: transparent;
+
       border: none;
-      outline: none;
-      color: #f1f1ed;
-      padding: 0 18px;
-      font-family: inherit;
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-    }
 
-    input::placeholder {
-      color: rgba(255,255,255,0.35);
-    }
+      border-bottom: 1px solid rgba(238,234,226,.55);
 
-    input:focus {
-      background: rgba(255,255,255,0.025);
-    }
-
-    button {
-      margin-top: 15px;
-      width: min(570px, 100%);
-      height: 57px;
-      border: 1px solid rgba(255,255,255,0.4);
       background: transparent;
-      color: #f1f1ed;
-      font-family: inherit;
-      font-size: 11px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition:
-        background .25s ease,
-        color .25s ease,
-        border-color .25s ease;
+
+      padding: 0 4px 12px;
+
+      outline: none;
+
+      color: #eeeae2;
+
+      font-family: Georgia, serif;
+
+      font-size: 13px;
+
+      letter-spacing: 2px;
+
+      transition: border-color .25s ease;
     }
 
-    button:hover {
-      background: #f1f1ed;
-      color: #050505;
-      border-color: #f1f1ed;
+
+    .field input:focus {
+      border-bottom-color: #eeeae2;
     }
+
+
+    .access-button {
+      width: 100%;
+
+      height: 58px;
+
+      margin-top: 38px;
+
+      border: 1px solid rgba(238,234,226,.55);
+
+      background: rgba(0,0,0,.25);
+
+      color: #eeeae2;
+
+      font-family: Georgia, serif;
+
+      font-size: 10px;
+
+      letter-spacing: 5px;
+
+      text-transform: uppercase;
+
+      cursor: pointer;
+
+      transition:
+        background .3s ease,
+        color .3s ease,
+        border-color .3s ease;
+    }
+
+
+    .access-button:hover {
+      background: #eeeae2;
+
+      color: #080808;
+
+      border-color: #eeeae2;
+    }
+
 
     .status {
-      height: 20px;
-      margin-top: 18px;
-      font-size: 10px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.45);
-    }
+      min-height: 20px;
 
-    /* BRAND */
+      margin-top: 17px;
 
-    .brand {
-      position: absolute;
-      left: 28px;
-      top: 24px;
-      font-size: 11px;
-      letter-spacing: 0.25em;
-      z-index: 3;
-    }
-
-    .counter {
-      position: absolute;
-      right: 28px;
-      top: 24px;
       font-size: 9px;
-      letter-spacing: 0.18em;
-      color: rgba(255,255,255,0.38);
-      z-index: 3;
-    }
 
-    .footer {
-      position: absolute;
-      left: 28px;
-      right: 28px;
-      bottom: 24px;
-      display: flex;
-      justify-content: space-between;
-      font-size: 9px;
-      letter-spacing: 0.12em;
+      letter-spacing: 3px;
+
       text-transform: uppercase;
-      color: rgba(255,255,255,0.28);
-      z-index: 3;
+
+      color: rgba(238,234,226,.6);
     }
 
-    /* MOBILE */
 
-    @media (max-width: 650px) {
-      .landing {
-        padding: 100px 22px 80px;
+    /* =========================================================
+       SCREEN TEXTURE
+    ========================================================= */
+
+    .scanlines {
+      position: absolute;
+
+      inset: 0;
+
+      z-index: 20;
+
+      pointer-events: none;
+
+      opacity: .035;
+
+      background-image:
+        repeating-linear-gradient(
+          to bottom,
+          rgba(255,255,255,.55) 0,
+          rgba(255,255,255,.55) 1px,
+          transparent 1px,
+          transparent 4px
+        );
+    }
+
+
+    .vignette {
+      position: absolute;
+
+      inset: 0;
+
+      z-index: 4;
+
+      pointer-events: none;
+
+      background:
+        radial-gradient(
+          ellipse at center,
+          transparent 40%,
+          rgba(0,0,0,.2) 72%,
+          rgba(0,0,0,.65) 100%
+        );
+    }
+
+
+    /* =========================================================
+       MOBILE
+    ========================================================= */
+
+    @media(max-width: 800px) {
+
+      body {
+        overflow-y: auto;
       }
 
+
+      .landing {
+        min-height: 100vh;
+        height: auto;
+
+        padding: 170px 25px 120px;
+      }
+
+
       .content {
+        position: relative;
+
+        left: auto;
+        top: auto;
+
+        transform: none;
+
         width: 100%;
       }
 
-      .micro {
-        margin-bottom: 26px;
-      }
 
       h1 {
-        font-size: clamp(42px, 14vw, 64px);
+        white-space: normal;
+
+        font-size: clamp(46px, 13vw, 70px);
+
+        line-height: 1.05;
       }
 
-      .question {
-        width: 90%;
-        margin-bottom: 38px;
+
+      .clock {
+        margin-bottom: 28px;
       }
+
+
+      .question {
+        font-size: 10px;
+
+        letter-spacing: 4px;
+
+        line-height: 1.8;
+
+        margin-top: 24px;
+      }
+
+
+      .form-wrapper {
+        margin-top: 58px;
+      }
+
 
       .access-form {
         grid-template-columns: 1fr;
+
+        gap: 32px;
       }
 
-      .field {
-        border-right: none;
-        border-bottom: 1px solid rgba(255,255,255,0.22);
+
+      .europe-map {
+        width: 160vw;
+
+        top: 48%;
+
+        opacity: .28;
       }
 
-      .field:last-of-type {
-        border-bottom: none;
+
+      .top-left {
+        left: 22px;
+        top: 24px;
       }
 
-      .brand {
-        left: 18px;
-        top: 20px;
+
+      .top-right {
+        right: 22px;
+        top: 27px;
+
+        font-size: 8px;
+
+        max-width: 150px;
+
+        text-align: right;
       }
 
-      .counter {
-        right: 18px;
-        top: 20px;
+
+      .bottom-left {
+        left: 22px;
+        bottom: 20px;
+
+        font-size: 7px;
       }
 
-      .footer {
-        left: 18px;
-        right: 18px;
-        bottom: 18px;
-      }
 
-      .footer span:last-child {
+      .bottom-right {
         display: none;
       }
 
-      .map {
-        width: 150vw;
-        opacity: 0.3;
-      }
     }
+
   </style>
+
 </head>
+
 
 <body>
 
   <main class="landing">
 
-    <div class="brand">NIGHT SHIFT</div>
 
-    <div class="counter">
-      ARCHIVE / 000001
+    <!-- =====================================================
+         BRAND
+    ====================================================== -->
+
+    <div class="corner top-left">
+
+      <strong>NIGHT SHIFT</strong>
+
+      <span>22:00 — 06:00</span>
+
     </div>
 
-    <!-- Abstract Europe map -->
-    <svg class="map" viewBox="0 0 1000 650" aria-hidden="true">
 
-      <path
-        class="continent"
-        d="
-          M130 155
-          L180 120
-          L245 130
-          L280 100
-          L325 125
-          L370 118
-          L405 145
-          L455 135
-          L500 165
-          L545 150
-          L590 175
-          L635 172
-          L675 205
-          L730 195
-          L770 230
-          L810 250
-          L790 290
-          L820 320
-          L780 345
-          L745 330
-          L720 360
-          L675 370
-          L640 405
-          L600 410
-          L575 450
-          L530 435
-          L500 470
-          L455 460
-          L415 420
-          L375 410
-          L345 375
-          L300 355
-          L270 320
-          L225 305
-          L200 265
-          L155 245
-          Z
-        "
+    <div class="corner top-right">
+
+      NOT ANOTHER SOCIAL APP.
+
+    </div>
+
+
+
+    <!-- =====================================================
+         EUROPE MAP
+    ====================================================== -->
+
+    <svg
+      class="europe-map"
+      viewBox="0 0 1200 720"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+
+
+      <!-- WESTERN EUROPE -->
+
+      <path class="map-land" d="
+      M250 490
+      L205 450
+      L178 392
+      L190 330
+      L236 289
+      L285 265
+      L332 276
+      L355 320
+      L341 362
+      L365 404
+      L332 444
+      L310 487
+      Z
+      " />
+
+
+      <!-- IBERIAN PENINSULA -->
+
+      <path class="map-land" d="
+      M190 410
+      L132 429
+      L103 470
+      L118 529
+      L172 554
+      L234 531
+      L265 488
+      L241 445
+      Z
+      " />
+
+
+      <!-- UK -->
+
+      <path class="map-land" d="
+      M257 225
+      L225 185
+      L242 137
+      L282 124
+      L315 162
+      L302 200
+      L324 229
+      L291 252
+      Z
+      " />
+
+
+      <!-- IRELAND -->
+
+      <path class="map-land" d="
+      M195 215
+      L169 192
+      L171 155
+      L202 139
+      L226 171
+      L218 206
+      Z
+      " />
+
+
+      <!-- CENTRAL EUROPE -->
+
+      <path class="map-land" d="
+      M330 274
+      L370 230
+      L421 226
+      L455 245
+      L505 222
+      L551 248
+      L559 291
+      L532 324
+      L551 366
+      L511 395
+      L461 372
+      L418 397
+      L367 369
+      L342 325
+      Z
+      " />
+
+
+      <!-- ITALY -->
+
+      <path class="map-land" d="
+      M440 390
+      L468 411
+      L485 446
+      L515 468
+      L535 510
+      L518 527
+      L494 489
+      L464 472
+      L448 433
+      L424 415
+      Z
+      " />
+
+
+      <!-- SCANDINAVIA -->
+
+      <path class="map-land" d="
+      M405 195
+      L419 124
+      L462 65
+      L504 77
+      L523 127
+      L501 172
+      L522 208
+      L485 227
+      L444 207
+      Z
+      " />
+
+
+      <!-- EASTERN EUROPE -->
+
+      <path class="map-land" d="
+      M551 247
+      L610 210
+      L670 226
+      L725 214
+      L789 244
+      L827 285
+      L809 328
+      L854 361
+      L826 401
+      L765 402
+      L723 431
+      L670 408
+      L618 425
+      L557 390
+      L532 335
+      Z
+      " />
+
+
+      <!-- BALKANS -->
+
+      <path class="map-land" d="
+      M555 386
+      L603 394
+      L644 430
+      L684 447
+      L701 488
+      L672 510
+      L627 488
+      L591 501
+      L548 468
+      L519 428
+      Z
+      " />
+
+
+      <!-- GREECE -->
+
+      <path class="map-land" d="
+      M631 490
+      L656 510
+      L668 545
+      L641 563
+      L621 537
+      L605 510
+      Z
+      " />
+
+
+      <!-- ===================================================
+           MAIN CITY LIGHTS
+      ==================================================== -->
+
+
+      <!-- MADRID -->
+
+      <circle
+        class="city-light main madrid"
+        cx="181"
+        cy="474"
+        r="3"
       />
 
-      <!-- city signals -->
+      <text
+        class="city-label"
+        x="195"
+        y="478"
+      >
+        MADRID
+      </text>
 
-      <circle class="city active" cx="310" cy="365" r="2.5" />
-      <circle class="city active delay-1" cx="392" cy="305" r="2.5" />
-      <circle class="city active delay-2" cx="470" cy="270" r="2.5" />
-      <circle class="city active delay-3" cx="525" cy="318" r="2.5" />
-      <circle class="city active delay-4" cx="585" cy="260" r="2.5" />
 
-      <circle class="city" cx="355" cy="250" r="2" />
-      <circle class="city" cx="430" cy="225" r="2" />
-      <circle class="city" cx="555" cy="210" r="2" />
-      <circle class="city" cx="620" cy="335" r="2" />
-      <circle class="city" cx="680" cy="285" r="2" />
+
+      <!-- AMSTERDAM -->
+
+      <circle
+        class="city-light main amsterdam"
+        cx="353"
+        cy="270"
+        r="3"
+      />
+
+      <text
+        class="city-label"
+        x="365"
+        y="266"
+      >
+        AMSTERDAM
+      </text>
+
+
+
+      <!-- BERLIN -->
+
+      <circle
+        class="city-light main berlin"
+        cx="486"
+        cy="277"
+        r="3"
+      />
+
+      <text
+        class="city-label"
+        x="500"
+        y="273"
+      >
+        BERLIN
+      </text>
+
+
+
+      <!-- ===================================================
+           OTHER CAPITALS - LOW LIGHT
+      ==================================================== -->
+
+
+      <!-- London -->
+
+      <circle
+        class="city-light medium"
+        cx="287"
+        cy="246"
+        r="2"
+      />
+
+
+      <!-- Paris -->
+
+      <circle
+        class="city-light"
+        cx="309"
+        cy="330"
+        r="2"
+      />
+
+
+      <!-- Lisbon -->
+
+      <circle
+        class="city-light"
+        cx="125"
+        cy="489"
+        r="2"
+      />
+
+
+      <!-- Rome -->
+
+      <circle
+        class="city-light"
+        cx="472"
+        cy="438"
+        r="2"
+      />
+
+
+      <!-- Vienna -->
+
+      <circle
+        class="city-light"
+        cx="510"
+        cy="351"
+        r="2"
+      />
+
+
+      <!-- Prague -->
+
+      <circle
+        class="city-light"
+        cx="489"
+        cy="319"
+        r="2"
+      />
+
+
+      <!-- Copenhagen -->
+
+      <circle
+        class="city-light"
+        cx="447"
+        cy="222"
+        r="2"
+      />
+
+
+      <!-- Stockholm -->
+
+      <circle
+        class="city-light"
+        cx="490"
+        cy="161"
+        r="2"
+      />
+
+
+      <!-- Oslo -->
+
+      <circle
+        class="city-light"
+        cx="436"
+        cy="158"
+        r="2"
+      />
+
+
+      <!-- Warsaw -->
+
+      <circle
+        class="city-light"
+        cx="584"
+        cy="294"
+        r="2"
+      />
+
+
+      <!-- Budapest -->
+
+      <circle
+        class="city-light"
+        cx="566"
+        cy="369"
+        r="2"
+      />
+
+
+      <!-- Athens -->
+
+      <circle
+        class="city-light"
+        cx="642"
+        cy="514"
+        r="2"
+      />
+
+
+      <!-- Bucharest -->
+
+      <circle
+        class="city-light"
+        cx="671"
+        cy="406"
+        r="2"
+      />
+
 
     </svg>
 
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
     <section class="content">
 
-      <div class="micro">
-        Europe / 02:13
+
+      <div class="clock">
+
+        EUROPE / <span id="currentTime">--:--</span>
+
       </div>
 
+
+
       <h1>
-        YOUR CITY<br>
-        IS ASLEEP.
+
+        YOUR CITY IS ASLEEP.
+
       </h1>
 
-      <p class="question">
+
+
+      <div class="question">
+
         DO YOU WANT TO START YOUR NIGHT SHIFT?
-      </p>
 
-      <form class="access-form" id="accessForm">
+      </div>
 
-        <div class="field">
-          <input
-            type="email"
-            id="email"
-            placeholder="EMAIL"
-            required
-          />
-        </div>
 
-        <div class="field">
-          <input
-            type="text"
-            id="city"
-            placeholder="CITY"
-            required
-          />
-        </div>
 
-      </form>
+      <div class="form-wrapper">
 
-      <button type="submit" form="accessForm">
-        REQUEST ACCESS TO SHIFT →
-      </button>
+        <form
+          class="access-form"
+          id="accessForm"
+        >
 
-      <div class="status" id="status"></div>
+
+          <div class="field">
+
+            <label for="email">
+              EMAIL
+            </label>
+
+            <input
+              type="email"
+              id="email"
+              autocomplete="email"
+              required
+            >
+
+          </div>
+
+
+
+          <div class="field">
+
+            <label for="city">
+              CITY
+            </label>
+
+            <input
+              type="text"
+              id="city"
+              autocomplete="address-level2"
+              required
+            >
+
+          </div>
+
+
+        </form>
+
+
+
+        <button
+          class="access-button"
+          type="submit"
+          form="accessForm"
+        >
+
+          REQUEST ACCESS TO SHIFT →
+
+        </button>
+
+
+
+        <div
+          class="status"
+          id="status"
+        ></div>
+
+
+      </div>
 
     </section>
 
-    <div class="footer">
-      <span>THE NIGHT IS BEING ARCHIVED.</span>
-      <span>ARCHIVENIGHTSHIFT.COM</span>
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <div class="corner bottom-left">
+
+      DOCUMENTING WHAT HAPPENS AFTER DARK.
+
     </div>
 
-    <div class="noise"></div>
+
+    <div class="corner bottom-right">
+
+      ARCHIVE NIGHT SHIFT — ALL RIGHTS RESERVED.
+
+    </div>
+
+
+
+    <div class="vignette"></div>
+
+    <div class="scanlines"></div>
+
 
   </main>
 
+
+
   <script>
-    const form = document.getElementById("accessForm");
-    const status = document.getElementById("status");
 
-    form.addEventListener("submit", function(event) {
-      event.preventDefault();
+    /* =========================================================
+       LIVE CLOCK
+    ========================================================= */
 
-      const email = document.getElementById("email").value;
-      const city = document.getElementById("city").value;
+    function updateClock() {
 
-      if (email && city) {
+      const now = new Date();
+
+
+      const hours =
+        String(now.getHours()).padStart(2, "0");
+
+
+      const minutes =
+        String(now.getMinutes()).padStart(2, "0");
+
+
+      document.getElementById("currentTime").textContent =
+        `${hours}:${minutes}`;
+
+    }
+
+
+    updateClock();
+
+
+    setInterval(
+      updateClock,
+      1000
+    );
+
+
+
+    /* =========================================================
+       TEMPORARY ACCESS FORM
+    ========================================================= */
+
+    const form =
+      document.getElementById("accessForm");
+
+
+    const status =
+      document.getElementById("status");
+
+
+    form.addEventListener(
+      "submit",
+      function(event) {
+
+        event.preventDefault();
+
+
+        const email =
+          document.getElementById("email").value.trim();
+
+
+        const city =
+          document.getElementById("city").value.trim();
+
+
+        if (!email || !city) {
+
+          return;
+
+        }
+
+
         status.textContent =
           "REQUEST RECEIVED. WE'LL WAKE YOU WHEN YOUR CITY DOES.";
 
+
         form.reset();
+
       }
-    });
+    );
+
   </script>
 
 </body>
+
 </html>
