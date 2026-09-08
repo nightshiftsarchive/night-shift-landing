@@ -2,969 +2,1349 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>NIGHT SHIFT — Archive the Night</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<title>NIGHT SHIFT</title>
 
-    html,
-    body {
-      width: 100%;
-      height: 100%;
-    }
-
-    body {
-      background: #050505;
-      color: #eeeae2;
-      font-family: Georgia, "Times New Roman", serif;
-      overflow: hidden;
-    }
-
-    .landing {
-      position: relative;
-      width: 100vw;
-      height: 100vh;
-      min-height: 650px;
-      overflow: hidden;
+<style>
 
-      background:
-        radial-gradient(
-          circle at center,
-          rgba(255,255,255,0.025),
-          transparent 46%
-        ),
-        #050505;
-    }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    /* MAP */
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
 
-    .europe-map {
-      position: absolute;
-      left: 50%;
-      top: 51%;
+body {
+  background: #050505;
+  color: #eeeae2;
+  overflow: hidden;
 
-      transform: translate(-50%, -50%);
+  font-family:
+    "Courier New",
+    Courier,
+    monospace;
+}
 
-      width: 72vw;
-      max-width: 1180px;
 
-      opacity: 0.75;
+/* =========================================================
+   PAGE
+========================================================= */
 
-      z-index: 0;
-    }
+.landing {
 
-    .map-land {
-      fill: rgba(255,255,255,0.012);
-      stroke: rgba(238,234,226,0.28);
-      stroke-width: 1;
-      vector-effect: non-scaling-stroke;
-    }
+  position: relative;
 
-    /* CITY LIGHTS */
+  width: 100vw;
+  height: 100vh;
 
-    .city-light {
-      fill: #eeeae2;
+  min-height: 620px;
 
-      opacity: 0.20;
+  overflow: hidden;
 
-      filter:
-        drop-shadow(0 0 2px rgba(255,255,255,.22));
-    }
+  background:
+    radial-gradient(
+      ellipse at 50% 48%,
+      rgba(255,255,255,.025),
+      transparent 42%
+    ),
+    #050505;
 
-    .city-light.medium {
-      opacity: 0.35;
+}
 
-      filter:
-        drop-shadow(0 0 4px rgba(255,255,255,.3));
-    }
 
-    .city-light.main {
-      opacity: 0.95;
+/* =========================================================
+   FAINT MAP
+========================================================= */
 
-      filter:
-        drop-shadow(0 0 4px rgba(255,255,255,.95))
-        drop-shadow(0 0 11px rgba(255,255,255,.5))
-        drop-shadow(0 0 22px rgba(255,255,255,.22));
+.map {
 
-      animation: cityPulse 3.8s ease-in-out infinite;
-    }
+  position: absolute;
 
-    .amsterdam {
-      animation-delay: 0s;
-    }
+  width: min(900px, 62vw);
 
-    .berlin {
-      animation-delay: 1.2s;
-    }
+  left: 50%;
+  top: 50%;
 
-    .madrid {
-      animation-delay: 2.4s;
-    }
+  transform:
+    translate(-50%, -50%);
 
-    @keyframes cityPulse {
+  z-index: 0;
 
-      0%,
-      100% {
-        opacity: .42;
-        r: 3;
-      }
+  opacity: .32;
 
-      50% {
-        opacity: 1;
-        r: 4.5;
-      }
+}
 
-    }
 
-    .city-label {
-      font-family: Georgia, serif;
-      fill: rgba(238,234,226,.55);
-      font-size: 11px;
-      letter-spacing: 3px;
-    }
+.map path {
 
-    /* CORNERS */
+  fill: rgba(255,255,255,.005);
 
-    .corner {
-      position: absolute;
+  stroke:
+    rgba(238,234,226,.23);
 
-      z-index: 10;
+  stroke-width: .7;
 
-      text-transform: uppercase;
+  vector-effect:
+    non-scaling-stroke;
 
-      color: rgba(238,234,226,.8);
-    }
+}
 
-    .top-left {
-      top: 32px;
-      left: 40px;
-    }
 
-    .top-left strong {
-      display: block;
+/* =========================================================
+   CITY SIGNALS
+========================================================= */
 
-      font-weight: normal;
+.signal {
 
-      font-size: 13px;
+  fill: #f2eee6;
 
-      letter-spacing: 6px;
-    }
+  opacity: .2;
 
-    .top-left span {
-      display: block;
+}
 
-      margin-top: 5px;
 
-      font-size: 8px;
+.signal.secondary {
 
-      letter-spacing: 4px;
+  opacity: .18;
 
-      opacity: .7;
-    }
+}
 
-    .top-right {
-      top: 38px;
-      right: 40px;
 
-      font-size: 9px;
+.signal.main {
 
-      letter-spacing: 4px;
-    }
+  opacity: 1;
 
-    .bottom-left {
-      bottom: 28px;
-      left: 40px;
+  filter:
 
-      font-size: 8px;
+    drop-shadow(
+      0 0 3px
+      rgba(255,255,255,.9)
+    )
 
-      letter-spacing: 3px;
+    drop-shadow(
+      0 0 9px
+      rgba(255,255,255,.5)
+    )
 
-      opacity: .62;
-    }
+    drop-shadow(
+      0 0 18px
+      rgba(255,255,255,.2)
+    );
 
-    .bottom-right {
-      bottom: 28px;
-      right: 40px;
+  animation:
+    signalPulse
+    4s
+    ease-in-out
+    infinite;
 
-      font-size: 8px;
+}
 
-      letter-spacing: 3px;
 
-      opacity: .62;
-    }
+.madrid {
+  animation-delay: 0s;
+}
 
-    /* CENTRAL CONTENT */
+.amsterdam {
+  animation-delay: 1.3s;
+}
 
-    .content {
-      position: absolute;
+.berlin {
+  animation-delay: 2.6s;
+}
 
-      left: 50%;
-      top: 48%;
 
-      transform: translate(-50%, -50%);
+@keyframes signalPulse {
 
-      width: min(920px, 84vw);
+  0%,
+  100% {
 
-      text-align: center;
+    opacity: .35;
+    r: 2;
 
-      z-index: 5;
-    }
+  }
 
-    .clock {
-      margin-bottom: 30px;
+  50% {
 
-      font-size: 9px;
+    opacity: 1;
+    r: 4;
 
-      letter-spacing: 5px;
+  }
 
-      color: rgba(238,234,226,.58);
-    }
+}
 
-    h1 {
-      white-space: nowrap;
 
-      font-weight: 400;
+/* =========================================================
+   CORNERS
+========================================================= */
 
-      font-size: clamp(34px, 4vw, 64px);
+.corner {
 
-      letter-spacing: .06em;
+  position: absolute;
 
-      line-height: 1;
+  z-index: 20;
 
-      color: #eeeae2;
+  text-transform: uppercase;
 
-      text-shadow:
-        0 0 15px rgba(255,255,255,.04);
-    }
+  color:
+    rgba(238,234,226,.7);
 
-    .question {
-      margin-top: 22px;
+}
 
-      font-size: 10px;
 
-      letter-spacing: 5px;
+.top-left {
 
-      color: rgba(238,234,226,.72);
+  top: 30px;
+  left: 34px;
 
-      text-transform: uppercase;
-    }
+}
 
-    /* FORM */
 
-    .form-wrapper {
-      width: min(560px, 86vw);
+.brand {
 
-      margin: 46px auto 0;
-    }
+  font-size: 11px;
 
-    .access-form {
-      display: grid;
+  letter-spacing: 5px;
 
-      grid-template-columns: 1fr 1fr;
+}
 
-      gap: 28px;
-    }
 
-    .field {
-      position: relative;
-    }
+.shift-hours {
 
-    .field label {
-      display: block;
+  margin-top: 6px;
 
-      text-align: left;
+  font-size: 7px;
 
-      margin-bottom: 9px;
+  letter-spacing: 3px;
 
-      font-size: 8px;
+  opacity: .62;
 
-      letter-spacing: 4px;
+}
 
-      color: rgba(238,234,226,.54);
-    }
 
-    .field input {
-      width: 100%;
+.top-right {
 
-      border: none;
+  top: 34px;
+  right: 34px;
 
-      border-bottom: 1px solid rgba(238,234,226,.45);
+  font-size: 7px;
 
-      background: transparent;
+  letter-spacing: 3px;
 
-      padding: 0 3px 9px;
+}
 
-      outline: none;
 
-      color: #eeeae2;
+.bottom-left {
 
-      font-family: Georgia, serif;
+  bottom: 25px;
+  left: 34px;
 
-      font-size: 11px;
+  font-size: 7px;
 
-      letter-spacing: 2px;
+  letter-spacing: 2px;
 
-      transition: border-color .25s ease;
-    }
+  opacity: .52;
 
-    .field input:focus {
-      border-bottom-color: #eeeae2;
-    }
+}
 
-    .access-button {
-      width: 100%;
 
-      height: 48px;
+.bottom-right {
 
-      margin-top: 28px;
+  bottom: 25px;
+  right: 34px;
 
-      border: 1px solid rgba(238,234,226,.45);
+  font-size: 7px;
 
-      background: rgba(0,0,0,.22);
+  letter-spacing: 2px;
 
-      color: #eeeae2;
+  opacity: .52;
 
-      font-family: Georgia, serif;
+}
 
-      font-size: 9px;
 
-      letter-spacing: 4px;
+/* =========================================================
+   CENTRAL BLOCK
+========================================================= */
 
-      text-transform: uppercase;
+.center {
 
-      cursor: pointer;
+  position: absolute;
 
-      transition:
-        background .3s ease,
-        color .3s ease,
-        border-color .3s ease;
-    }
+  left: 50%;
+  top: 48%;
 
-    .access-button:hover {
-      background: #eeeae2;
+  transform:
+    translate(-50%, -50%);
 
-      color: #080808;
+  width: min(760px, 78vw);
 
-      border-color: #eeeae2;
-    }
+  text-align: center;
 
-    .status {
-      min-height: 18px;
+  z-index: 10;
 
-      margin-top: 15px;
+}
 
-      font-size: 8px;
 
-      letter-spacing: 3px;
+/* =========================================================
+   CLOCK
+========================================================= */
 
-      text-transform: uppercase;
+.clock {
 
-      color: rgba(238,234,226,.56);
-    }
+  margin-bottom: 23px;
 
-    /* TEXTURE */
+  font-size: 8px;
 
-    .scanlines {
-      position: absolute;
+  letter-spacing: 4px;
 
-      inset: 0;
+  color:
+    rgba(238,234,226,.55);
 
-      z-index: 20;
+}
 
-      pointer-events: none;
 
-      opacity: .025;
+/* =========================================================
+   HEADLINE
+========================================================= */
 
-      background-image:
-        repeating-linear-gradient(
-          to bottom,
-          rgba(255,255,255,.5) 0,
-          rgba(255,255,255,.5) 1px,
-          transparent 1px,
-          transparent 4px
-        );
-    }
+h1 {
 
-    .vignette {
-      position: absolute;
+  white-space: nowrap;
 
-      inset: 0;
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
 
-      z-index: 4;
+  font-size:
+    clamp(
+      28px,
+      3vw,
+      46px
+    );
 
-      pointer-events: none;
+  font-weight: 400;
 
-      background:
-        radial-gradient(
-          ellipse at center,
-          transparent 43%,
-          rgba(0,0,0,.18) 73%,
-          rgba(0,0,0,.62) 100%
-        );
-    }
+  letter-spacing: .07em;
 
-    /* MOBILE */
+  line-height: 1;
 
-    @media(max-width: 800px) {
+  color: #eeeae2;
 
-      body {
-        overflow-y: auto;
-      }
+}
 
-      .landing {
-        min-height: 100vh;
-        height: auto;
 
-        padding: 150px 24px 110px;
-      }
+/* =========================================================
+   QUESTION
+========================================================= */
 
-      .content {
-        position: relative;
+.question {
 
-        left: auto;
-        top: auto;
+  margin-top: 18px;
 
-        transform: none;
+  font-size: 8px;
 
-        width: 100%;
-      }
+  letter-spacing: 4px;
 
-      h1 {
-        white-space: normal;
+  line-height: 1.8;
 
-        font-size: clamp(36px, 10vw, 54px);
+  color:
+    rgba(238,234,226,.62);
 
-        line-height: 1.05;
-      }
+}
 
-      .clock {
-        margin-bottom: 24px;
-      }
 
-      .question {
-        font-size: 9px;
+/* =========================================================
+   FORM
+========================================================= */
 
-        letter-spacing: 4px;
+.form-area {
 
-        line-height: 1.7;
+  width:
+    min(
+      430px,
+      80vw
+    );
 
-        margin-top: 20px;
-      }
+  margin:
+    38px
+    auto
+    0;
 
-      .form-wrapper {
-        margin-top: 46px;
-      }
+}
 
-      .access-form {
-        grid-template-columns: 1fr;
 
-        gap: 28px;
-      }
+.form {
 
-      .europe-map {
-        width: 150vw;
+  display: grid;
 
-        top: 48%;
+  grid-template-columns:
+    1fr
+    1fr;
 
-        opacity: .5;
-      }
+  gap: 24px;
 
-      .top-left {
-        left: 20px;
-        top: 22px;
-      }
+}
 
-      .top-right {
-        right: 20px;
-        top: 25px;
 
-        font-size: 7px;
+.field {
 
-        max-width: 150px;
+  text-align: left;
 
-        text-align: right;
-      }
+}
 
-      .bottom-left {
-        left: 20px;
-        bottom: 18px;
 
-        font-size: 7px;
-      }
+.field label {
 
-      .bottom-right {
-        display: none;
-      }
+  display: block;
 
-    }
+  margin-bottom: 8px;
 
-  </style>
+  font-size: 7px;
 
+  letter-spacing: 3px;
+
+  color:
+    rgba(238,234,226,.5);
+
+}
+
+
+.field input {
+
+  width: 100%;
+
+  padding:
+    0
+    2px
+    8px;
+
+  border: none;
+
+  border-bottom:
+    1px solid
+    rgba(238,234,226,.38);
+
+  outline: none;
+
+  background: transparent;
+
+  color: #eeeae2;
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 9px;
+
+  letter-spacing: 1px;
+
+}
+
+
+.field input:focus {
+
+  border-bottom-color:
+    rgba(238,234,226,.9);
+
+}
+
+
+/* =========================================================
+   BUTTON
+========================================================= */
+
+button {
+
+  width: 100%;
+
+  height: 39px;
+
+  margin-top: 23px;
+
+  border:
+    1px solid
+    rgba(238,234,226,.35);
+
+  background:
+    rgba(0,0,0,.18);
+
+  color: #eeeae2;
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 7px;
+
+  letter-spacing: 3px;
+
+  cursor: pointer;
+
+  transition:
+    background .25s ease,
+    color .25s ease,
+    border-color .25s ease;
+
+}
+
+
+button:hover {
+
+  background:
+    #eeeae2;
+
+  color:
+    #050505;
+
+  border-color:
+    #eeeae2;
+
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+.status {
+
+  margin-top: 13px;
+
+  min-height: 14px;
+
+  font-size: 7px;
+
+  letter-spacing: 2px;
+
+  color:
+    rgba(238,234,226,.52);
+
+}
+
+
+/* =========================================================
+   TEXTURE
+========================================================= */
+
+.scanlines {
+
+  position: fixed;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  z-index: 50;
+
+  opacity: .022;
+
+  background-image:
+
+    repeating-linear-gradient(
+
+      to bottom,
+
+      rgba(255,255,255,.4) 0,
+
+      rgba(255,255,255,.4) 1px,
+
+      transparent 1px,
+
+      transparent 4px
+
+    );
+
+}
+
+
+.vignette {
+
+  position: absolute;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  z-index: 5;
+
+  background:
+
+    radial-gradient(
+
+      ellipse at center,
+
+      transparent 45%,
+
+      rgba(0,0,0,.18) 73%,
+
+      rgba(0,0,0,.68) 100%
+
+    );
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:700px) {
+
+  body {
+
+    overflow-y: auto;
+
+  }
+
+
+  .landing {
+
+    min-height: 100vh;
+
+    height: auto;
+
+    padding:
+
+      145px
+      22px
+      100px;
+
+  }
+
+
+  .center {
+
+    position: relative;
+
+    left: auto;
+    top: auto;
+
+    transform: none;
+
+    width: 100%;
+
+  }
+
+
+  h1 {
+
+    white-space: normal;
+
+    font-size:
+      clamp(
+        31px,
+        10vw,
+        42px
+      );
+
+    line-height: 1.08;
+
+  }
+
+
+  .question {
+
+    margin-top: 20px;
+
+    font-size: 8px;
+
+    letter-spacing: 3px;
+
+  }
+
+
+  .form-area {
+
+    width: 100%;
+
+    max-width: 390px;
+
+    margin-top: 43px;
+
+  }
+
+
+  .form {
+
+    grid-template-columns:
+      1fr;
+
+    gap: 25px;
+
+  }
+
+
+  .map {
+
+    width: 150vw;
+
+    opacity: .22;
+
+  }
+
+
+  .top-left {
+
+    left: 20px;
+    top: 22px;
+
+  }
+
+
+  .top-right {
+
+    right: 20px;
+    top: 25px;
+
+    max-width: 130px;
+
+    text-align: right;
+
+    line-height: 1.5;
+
+  }
+
+
+  .bottom-left {
+
+    left: 20px;
+    bottom: 18px;
+
+  }
+
+
+  .bottom-right {
+
+    display: none;
+
+  }
+
+}
+
+</style>
 </head>
 
 
 <body>
 
-  <main class="landing">
-
-
-    <div class="corner top-left">
-
-      <strong>NIGHT SHIFT</strong>
-
-      <span>22:00 — 06:00</span>
-
-    </div>
-
-
-    <div class="corner top-right">
-
-      NOT ANOTHER SOCIAL APP.
-
-    </div>
-
-
-
-    <svg
-      class="europe-map"
-      viewBox="0 0 1200 720"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-    >
-
-
-      <path class="map-land" d="
-      M250 490
-      L205 450
-      L178 392
-      L190 330
-      L236 289
-      L285 265
-      L332 276
-      L355 320
-      L341 362
-      L365 404
-      L332 444
-      L310 487
-      Z
-      " />
-
-
-      <path class="map-land" d="
-      M190 410
-      L132 429
-      L103 470
-      L118 529
-      L172 554
-      L234 531
-      L265 488
-      L241 445
-      Z
-      " />
-
-
-      <path class="map-land" d="
-      M257 225
-      L225 185
-      L242 137
-      L282 124
-      L315 162
-      L302 200
-      L324 229
-      L291 252
-      Z
-      " />
-
-
-      <path class="map-land" d="
-      M195 215
-      L169 192
-      L171 155
-      L202 139
-      L226 171
-      L218 206
-      Z
-      " />
-
-
-      <path class="map-land" d="
-      M330 274
-      L370 230
-      L421 226
-      L455 245
-      L505 222
-      L551 248
-      L559 291
-      L532 324
-      L551 366
-      L511 395
-      L461 372
-      L418 397
-      L367 369
-      L342 325
-      Z
-      " />
-
-
-      <path class="map-land" d="
-      M440 390
-      L468 411
-      L485 446
-      L515 468
-      L535 510
-      L518 527
-      L494 489
-      L464 472
-      L448 433
-      L424 415
-      Z
-      " />
-
-
-      <path class="map-land" d="
-      M405 195
-      L419 124
-      L462 65
-      L504 77
-      L523 127
-      L501 172
-      L522 208
-      L485 227
-      L444 207
-      Z
-      " />
-
-
-      <path class="map-land" d="
-      M551 247
-      L610 210
-      L670 226
-      L725 214
-      L789 244
-      L827 285
-      L809 328
-      L854 361
-      L826 401
-      L765 402
-      L723 431
-      L670 408
-      L618 425
-      L557 390
-      L532 335
-      Z
-      " />
-
-
-      <path class="map-land" d="
-      M555 386
-      L603 394
-      L644 430
-      L684 447
-      L701 488
-      L672 510
-      L627 488
-      L591 501
-      L548 468
-      L519 428
-      Z
-      " />
+<main class="landing">
 
 
-      <path class="map-land" d="
-      M631 490
-      L656 510
-      L668 545
-      L641 563
-      L621 537
-      L605 510
-      Z
-      " />
+<!-- =========================================================
+     CORNERS
+========================================================= -->
 
+<div class="corner top-left">
 
-      <!-- MAIN CITY LIGHTS -->
+  <div class="brand">
+    NIGHT SHIFT
+  </div>
 
-      <circle
-        class="city-light main madrid"
-        cx="181"
-        cy="474"
-        r="3"
-      />
+  <div class="shift-hours">
+    22:00 — 06:00
+  </div>
 
-      <text
-        class="city-label"
-        x="195"
-        y="478"
-      >
-        MADRID
-      </text>
+</div>
 
 
+<div class="corner top-right">
 
-      <circle
-        class="city-light main amsterdam"
-        cx="353"
-        cy="270"
-        r="3"
-      />
+  NOT ANOTHER SOCIAL APP.
 
-      <text
-        class="city-label"
-        x="365"
-        y="266"
-      >
-        AMSTERDAM
-      </text>
+</div>
 
 
 
-      <circle
-        class="city-light main berlin"
-        cx="486"
-        cy="277"
-        r="3"
-      />
+<!-- =========================================================
+     MAP
+========================================================= -->
 
-      <text
-        class="city-label"
-        x="500"
-        y="273"
-      >
-        BERLIN
-      </text>
+<svg
+  class="map"
+  viewBox="0 0 1000 650"
+  aria-hidden="true"
+>
 
 
+<!-- Iberia -->
 
-      <!-- OTHER CAPITALS -->
+<path d="
+M135 430
+L105 457
+L98 506
+L130 535
+L188 532
+L226 503
+L216 458
+L178 430
+Z
+"/>
 
-      <circle class="city-light medium" cx="287" cy="246" r="2" />
+
+<!-- France / Benelux -->
+
+<path d="
+M216 357
+L177 382
+L180 435
+L220 465
+L267 446
+L282 402
+L258 369
+Z
+"/>
+
+
+<!-- United Kingdom -->
+
+<path d="
+M203 243
+L184 208
+L198 170
+L231 164
+L250 196
+L240 229
+L258 252
+L229 270
+Z
+"/>
+
+
+<!-- Ireland -->
+
+<path d="
+M163 239
+L145 215
+L151 184
+L179 177
+L191 206
+L183 233
+Z
+"/>
+
+
+<!-- Netherlands / Germany / Central -->
+
+<path d="
+M269 328
+L281 276
+L333 258
+L386 271
+L422 304
+L414 347
+L374 368
+L319 357
+Z
+"/>
+
+
+<!-- Scandinavia -->
+
+<path d="
+M330 242
+L329 180
+L357 108
+L392 73
+L428 91
+L439 140
+L416 187
+L424 230
+L384 256
+Z
+"/>
+
+
+<!-- Eastern Europe -->
+
+<path d="
+M420 301
+L476 261
+L549 267
+L618 287
+L668 322
+L650 369
+L604 391
+L545 382
+L489 403
+L433 364
+Z
+"/>
+
+
+<!-- Italy -->
+
+<path d="
+M345 376
+L365 399
+L373 431
+L398 449
+L414 483
+L400 495
+L376 461
+L351 446
+L333 406
+Z
+"/>
+
+
+<!-- Balkans -->
+
+<path d="
+M428 372
+L476 386
+L519 420
+L555 432
+L575 464
+L548 481
+L507 464
+L469 476
+L430 447
+L403 410
+Z
+"/>
+
+
+<!-- Greece -->
+
+<path d="
+M510 460
+L532 475
+L542 504
+L523 519
+L503 493
+L490 471
+Z
+"/>
+
+
 
-      <circle class="city-light" cx="309" cy="330" r="2" />
+<!-- =========================================================
+     BRIGHT CITIES
+========================================================= -->
 
-      <circle class="city-light" cx="125" cy="489" r="2" />
+<!-- MADRID -->
 
-      <circle class="city-light" cx="472" cy="438" r="2" />
+<circle
+  class="signal main madrid"
+  cx="158"
+  cy="474"
+  r="2"
+/>
 
-      <circle class="city-light" cx="510" cy="351" r="2" />
 
-      <circle class="city-light" cx="489" cy="319" r="2" />
+<!-- AMSTERDAM -->
 
-      <circle class="city-light" cx="447" cy="222" r="2" />
+<circle
+  class="signal main amsterdam"
+  cx="292"
+  cy="299"
+  r="2"
+/>
 
-      <circle class="city-light" cx="490" cy="161" r="2" />
 
-      <circle class="city-light" cx="436" cy="158" r="2" />
+<!-- BERLIN -->
 
-      <circle class="city-light" cx="584" cy="294" r="2" />
+<circle
+  class="signal main berlin"
+  cx="382"
+  cy="309"
+  r="2"
+/>
 
-      <circle class="city-light" cx="566" cy="369" r="2" />
 
-      <circle class="city-light" cx="642" cy="514" r="2" />
 
-      <circle class="city-light" cx="671" cy="406" r="2" />
+<!-- =========================================================
+     LOW ACTIVITY CAPITALS
+========================================================= -->
 
+<!-- London -->
 
-    </svg>
+<circle
+  class="signal secondary"
+  cx="229"
+  cy="263"
+  r="1.4"
+/>
 
 
+<!-- Paris -->
 
-    <section class="content">
+<circle
+  class="signal secondary"
+  cx="245"
+  cy="375"
+  r="1.4"
+/>
 
 
-      <div class="clock">
+<!-- Lisbon -->
 
-        EUROPE / <span id="currentTime">--:--</span>
+<circle
+  class="signal secondary"
+  cx="117"
+  cy="487"
+  r="1.4"
+/>
 
-      </div>
 
+<!-- Rome -->
 
+<circle
+  class="signal secondary"
+  cx="365"
+  cy="430"
+  r="1.4"
+/>
 
-      <h1>
 
-        YOUR CITY IS ASLEEP.
+<!-- Prague -->
 
-      </h1>
+<circle
+  class="signal secondary"
+  cx="404"
+  cy="345"
+  r="1.4"
+/>
 
 
+<!-- Vienna -->
 
-      <div class="question">
+<circle
+  class="signal secondary"
+  cx="427"
+  cy="370"
+  r="1.4"
+/>
 
-        DO YOU WANT TO START YOUR NIGHT SHIFT?
 
-      </div>
+<!-- Warsaw -->
 
+<circle
+  class="signal secondary"
+  cx="469"
+  cy="324"
+  r="1.4"
+/>
 
 
-      <div class="form-wrapper">
+<!-- Copenhagen -->
 
-        <form
-          class="access-form"
-          id="accessForm"
-        >
+<circle
+  class="signal secondary"
+  cx="372"
+  cy="256"
+  r="1.4"
+/>
 
 
-          <div class="field">
+<!-- Oslo -->
 
-            <label for="email">
-              EMAIL
-            </label>
+<circle
+  class="signal secondary"
+  cx="351"
+  cy="196"
+  r="1.4"
+/>
 
-            <input
-              type="email"
-              id="email"
-              autocomplete="email"
-              required
-            >
 
-          </div>
+<!-- Stockholm -->
 
+<circle
+  class="signal secondary"
+  cx="405"
+  cy="189"
+  r="1.4"
+/>
 
 
-          <div class="field">
+<!-- Budapest -->
 
-            <label for="city">
-              CITY
-            </label>
+<circle
+  class="signal secondary"
+  cx="463"
+  cy="390"
+  r="1.4"
+/>
 
-            <input
-              type="text"
-              id="city"
-              autocomplete="address-level2"
-              required
-            >
 
-          </div>
+<!-- Bucharest -->
 
+<circle
+  class="signal secondary"
+  cx="535"
+  cy="407"
+  r="1.4"
+/>
 
-        </form>
 
+<!-- Athens -->
 
+<circle
+  class="signal secondary"
+  cx="521"
+  cy="482"
+  r="1.4"
+/>
 
-        <button
-          class="access-button"
-          type="submit"
-          form="accessForm"
-        >
 
-          REQUEST ACCESS TO SHIFT →
+</svg>
 
-        </button>
 
 
+<!-- =========================================================
+     CENTRAL CONTENT
+========================================================= -->
 
-        <div
-          class="status"
-          id="status"
-        ></div>
+<section class="center">
 
 
-      </div>
+<div class="clock">
 
-    </section>
+  EUROPE /
+  <span id="clock">
+    --:--
+  </span>
 
+</div>
 
 
-    <div class="corner bottom-left">
 
-      DOCUMENTING WHAT HAPPENS AFTER DARK.
+<h1>
 
-    </div>
+  YOUR CITY IS ASLEEP.
 
+</h1>
 
-    <div class="corner bottom-right">
 
-      ARCHIVE NIGHT SHIFT — ALL RIGHTS RESERVED.
 
-    </div>
+<div class="question">
 
+  DO YOU WANT TO START YOUR NIGHT SHIFT?
 
+</div>
 
-    <div class="vignette"></div>
 
-    <div class="scanlines"></div>
 
+<div class="form-area">
 
-  </main>
 
+<form
+  id="accessForm"
+  class="form"
+>
 
 
-  <script>
+<div class="field">
 
-    function updateClock() {
+<label for="email">
 
-      const now = new Date();
+EMAIL
 
+</label>
 
-      const hours =
-        String(now.getHours()).padStart(2, "0");
+<input
+  id="email"
+  type="email"
+  autocomplete="email"
+  required
+>
 
+</div>
 
-      const minutes =
-        String(now.getMinutes()).padStart(2, "0");
 
 
-      document.getElementById("currentTime").textContent =
-        `${hours}:${minutes}`;
+<div class="field">
+
+<label for="city">
+
+CITY
+
+</label>
+
+<input
+  id="city"
+  type="text"
+  autocomplete="address-level2"
+  required
+>
+
+</div>
+
+
+</form>
+
+
+
+<button
+  type="submit"
+  form="accessForm"
+>
+
+REQUEST ACCESS TO SHIFT →
+
+</button>
+
+
+
+<div
+  id="status"
+  class="status"
+></div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<div class="corner bottom-left">
+
+DOCUMENTING WHAT HAPPENS AFTER DARK.
+
+</div>
+
+
+<div class="corner bottom-right">
+
+ARCHIVE NIGHT SHIFT — ALL RIGHTS RESERVED.
+
+</div>
+
+
+
+<div class="vignette"></div>
+
+<div class="scanlines"></div>
+
+
+</main>
+
+
+
+<script>
+
+/* =========================================================
+   CLOCK
+========================================================= */
+
+function updateClock() {
+
+  const now =
+    new Date();
+
+
+  const hours =
+    String(
+      now.getHours()
+    ).padStart(
+      2,
+      "0"
+    );
+
+
+  const minutes =
+    String(
+      now.getMinutes()
+    ).padStart(
+      2,
+      "0"
+    );
+
+
+  document
+    .getElementById(
+      "clock"
+    )
+    .textContent =
+      `${hours}:${minutes}`;
+
+}
+
+
+updateClock();
+
+
+setInterval(
+  updateClock,
+  1000
+);
+
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+const form =
+  document.getElementById(
+    "accessForm"
+  );
+
+
+const status =
+  document.getElementById(
+    "status"
+  );
+
+
+form.addEventListener(
+  "submit",
+  function(event) {
+
+    event.preventDefault();
+
+
+    const email =
+      document
+        .getElementById(
+          "email"
+        )
+        .value
+        .trim();
+
+
+    const city =
+      document
+        .getElementById(
+          "city"
+        )
+        .value
+        .trim();
+
+
+    if (
+      !email ||
+      !city
+    ) {
+
+      return;
 
     }
 
 
-    updateClock();
+    status.textContent =
+      "REQUEST RECEIVED. WE'LL WAKE YOU WHEN YOUR CITY DOES.";
 
 
-    setInterval(
-      updateClock,
-      1000
-    );
+    form.reset();
 
+  }
+);
 
+</script>
 
-    const form =
-      document.getElementById("accessForm");
-
-
-    const status =
-      document.getElementById("status");
-
-
-    form.addEventListener(
-      "submit",
-      function(event) {
-
-        event.preventDefault();
-
-
-        const email =
-          document.getElementById("email").value.trim();
-
-
-        const city =
-          document.getElementById("city").value.trim();
-
-
-        if (!email || !city) {
-          return;
-        }
-
-
-        status.textContent =
-          "REQUEST RECEIVED. WE'LL WAKE YOU WHEN YOUR CITY DOES.";
-
-
-        form.reset();
-
-      }
-    );
-
-  </script>
 
 </body>
-
 </html>
