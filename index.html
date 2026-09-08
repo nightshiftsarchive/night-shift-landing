@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -43,44 +42,53 @@
     }
 
     /* =========================
-       MAP
+       REAL MAP
     ========================= */
 
     .map-wrap {
       position: absolute;
       left: 50%;
       top: 50%;
+
       transform: translate(-50%, -50%);
+
       width: min(980px, 64vw);
+      aspect-ratio: 450 / 456;
+
       z-index: 1;
       pointer-events: none;
-    }
 
-    .real-map {
-      display: block;
-      width: 100%;
-      height: auto;
+      background-image:
+        url("Blank_map_of_Europe_1839.svg");
 
-      opacity: .52;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+
+      opacity: .62;
 
       filter:
         grayscale(1)
-        brightness(.72)
-        contrast(2.25);
+        invert(1)
+        brightness(.95)
+        contrast(1.65);
 
       mix-blend-mode: screen;
     }
 
-    .map-glow {
+    .map-shade {
       position: absolute;
-      inset: 0;
+      inset: -5%;
+      z-index: 2;
+      pointer-events: none;
+
       background:
         radial-gradient(
           ellipse at center,
-          rgba(255,255,255,.015),
-          transparent 45%
+          transparent 38%,
+          rgba(5,5,5,.12) 70%,
+          rgba(5,5,5,.44) 100%
         );
-      z-index: 2;
     }
 
     /* =========================
@@ -89,38 +97,57 @@
 
     .city {
       position: absolute;
+
       width: 3px;
       height: 3px;
+
       border-radius: 50%;
+
       background: #eeeae2;
+
       z-index: 4;
     }
 
     .city.soft {
-      opacity: .22;
+      opacity: .25;
+
       box-shadow:
         0 0 4px rgba(255,255,255,.22);
     }
 
     .city.main {
       opacity: 1;
+
       box-shadow:
         0 0 4px rgba(255,255,255,.95),
         0 0 10px rgba(255,255,255,.62),
         0 0 24px rgba(255,255,255,.28);
-      animation: pulse 3.6s ease-in-out infinite;
+
+      animation:
+        pulse
+        3.6s
+        ease-in-out
+        infinite;
     }
 
     .city.main::after {
       content: "";
+
       position: absolute;
+
       left: 50%;
       top: 50%;
+
       width: 15px;
       height: 15px;
+
       transform: translate(-50%, -50%);
+
       border-radius: 50%;
-      border: 1px solid rgba(255,255,255,.12);
+
+      border:
+        1px solid
+        rgba(255,255,255,.12);
     }
 
     @keyframes pulse {
@@ -136,7 +163,7 @@
     }
 
     .madrid {
-      left: 31.5%;
+      left: 31%;
       top: 68%;
       animation-delay: 0s;
     }
@@ -148,23 +175,23 @@
     }
 
     .berlin {
-      left: 53.4%;
-      top: 42.2%;
+      left: 53%;
+      top: 42%;
       animation-delay: 2.4s;
     }
 
     .london {
-      left: 39.4%;
-      top: 42.5%;
+      left: 39%;
+      top: 43%;
     }
 
     .paris {
-      left: 41.1%;
-      top: 50.2%;
+      left: 41%;
+      top: 50%;
     }
 
     .lisbon {
-      left: 25.5%;
+      left: 25%;
       top: 69%;
     }
 
@@ -175,22 +202,22 @@
 
     .vienna {
       left: 57%;
-      top: 54.4%;
+      top: 55%;
     }
 
     .prague {
-      left: 54.5%;
-      top: 49.4%;
+      left: 54%;
+      top: 49%;
     }
 
     .warsaw {
       left: 60%;
-      top: 46.2%;
+      top: 46%;
     }
 
     .copenhagen {
       left: 51%;
-      top: 35.2%;
+      top: 35%;
     }
 
     .oslo {
@@ -209,13 +236,13 @@
     }
 
     .bucharest {
-      left: 66.2%;
+      left: 66%;
       top: 61%;
     }
 
     .athens {
       left: 63%;
-      top: 72.7%;
+      top: 73%;
     }
 
     /* =========================
@@ -225,8 +252,11 @@
     .corner {
       position: absolute;
       z-index: 20;
+
       text-transform: uppercase;
-      color: rgba(238,234,226,.72);
+
+      color:
+        rgba(238,234,226,.72);
     }
 
     .top-left {
@@ -241,14 +271,17 @@
 
     .hours {
       margin-top: 6px;
+
       font-size: 7px;
       letter-spacing: 3px;
+
       opacity: .66;
     }
 
     .top-right {
       top: 32px;
       right: 34px;
+
       font-size: 8px;
       letter-spacing: 3px;
     }
@@ -256,16 +289,20 @@
     .bottom-left {
       bottom: 24px;
       left: 34px;
+
       font-size: 7px;
       letter-spacing: 2px;
+
       opacity: .56;
     }
 
     .bottom-right {
       bottom: 24px;
       right: 34px;
+
       font-size: 7px;
       letter-spacing: 2px;
+
       opacity: .56;
     }
 
@@ -275,36 +312,58 @@
 
     .center {
       position: absolute;
+
       left: 50%;
       top: 48%;
+
       transform: translate(-50%, -50%);
+
       width: min(720px, 74vw);
+
       text-align: center;
+
       z-index: 10;
     }
 
     .clock {
       margin-bottom: 20px;
+
       font-size: 8px;
       letter-spacing: 4px;
-      color: rgba(238,234,226,.58);
+
+      color:
+        rgba(238,234,226,.58);
     }
 
     h1 {
       white-space: nowrap;
-      font-size: clamp(26px, 2.8vw, 44px);
+
+      font-size:
+        clamp(
+          26px,
+          2.8vw,
+          44px
+        );
+
       font-weight: 400;
+
       line-height: 1;
+
       letter-spacing: .08em;
+
       color: #eeeae2;
     }
 
     .question {
       margin-top: 18px;
+
       font-size: 8px;
       letter-spacing: 4px;
+
       line-height: 1.7;
-      color: rgba(238,234,226,.68);
+
+      color:
+        rgba(238,234,226,.68);
     }
 
     /* =========================
@@ -313,12 +372,17 @@
 
     .form-area {
       width: min(420px, 76vw);
+
       margin: 34px auto 0;
     }
 
     .form {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+
+      grid-template-columns:
+        1fr
+        1fr;
+
       gap: 22px;
     }
 
@@ -328,40 +392,78 @@
 
     .field label {
       display: block;
+
       margin-bottom: 7px;
+
       font-size: 7px;
       letter-spacing: 3px;
-      color: rgba(238,234,226,.5);
+
+      color:
+        rgba(238,234,226,.5);
     }
 
     .field input {
       width: 100%;
+
       border: none;
-      border-bottom: 1px solid rgba(238,234,226,.44);
+
+      border-bottom:
+        1px solid
+        rgba(238,234,226,.44);
+
       outline: none;
+
       background: transparent;
-      padding: 0 2px 7px;
+
+      padding:
+        0
+        2px
+        7px;
+
       color: #eeeae2;
-      font-family: Georgia, "Times New Roman", serif;
+
+      font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
       font-size: 9px;
+
       letter-spacing: 1px;
     }
 
     .field input:focus {
-      border-bottom-color: rgba(238,234,226,.95);
+      border-bottom-color:
+        rgba(238,234,226,.95);
     }
 
     button {
       width: 100%;
+
       height: 38px;
+
       margin-top: 22px;
-      border: 1px solid rgba(238,234,226,.42);
-      background: rgba(0,0,0,.3);
+
+      border:
+        1px solid
+        rgba(238,234,226,.42);
+
+      background:
+        rgba(0,0,0,.3);
+
       color: #eeeae2;
-      font-family: Georgia, "Times New Roman", serif;
+
+      font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
       font-size: 7px;
+
       letter-spacing: 3px;
+
       cursor: pointer;
+
       transition:
         background .25s ease,
         color .25s ease;
@@ -374,10 +476,14 @@
 
     .status {
       min-height: 14px;
+
       margin-top: 12px;
+
       font-size: 7px;
       letter-spacing: 2px;
-      color: rgba(238,234,226,.52);
+
+      color:
+        rgba(238,234,226,.52);
     }
 
     /* =========================
@@ -387,9 +493,13 @@
     .scanlines {
       position: absolute;
       inset: 0;
+
       pointer-events: none;
+
       z-index: 40;
+
       opacity: .02;
+
       background:
         repeating-linear-gradient(
           to bottom,
@@ -403,8 +513,11 @@
     .vignette {
       position: absolute;
       inset: 0;
+
       pointer-events: none;
+
       z-index: 8;
+
       background:
         radial-gradient(
           ellipse at center,
@@ -427,41 +540,60 @@
       .landing {
         height: auto;
         min-height: 100vh;
-        padding: 145px 20px 100px;
+
+        padding:
+          145px
+          20px
+          100px;
       }
 
       .map-wrap {
         width: 145vw;
+
         top: 49%;
       }
 
       .center {
         position: relative;
+
         left: auto;
         top: auto;
+
         transform: none;
+
         width: 100%;
       }
 
       h1 {
         white-space: normal;
-        font-size: clamp(30px, 9vw, 40px);
+
+        font-size:
+          clamp(
+            30px,
+            9vw,
+            40px
+          );
+
         line-height: 1.08;
       }
 
       .question {
         font-size: 8px;
+
         letter-spacing: 3px;
       }
 
       .form-area {
         width: 100%;
+
         max-width: 370px;
+
         margin-top: 40px;
       }
 
       .form {
         grid-template-columns: 1fr;
+
         gap: 24px;
       }
 
@@ -473,8 +605,11 @@
       .top-right {
         right: 20px;
         top: 24px;
+
         max-width: 140px;
+
         text-align: right;
+
         line-height: 1.4;
       }
 
@@ -488,154 +623,191 @@
       }
     }
   </style>
-
 </head>
 
 <body>
 
-  <main class="landing">
+<main class="landing">
 
-    <div class="corner top-left">
-      <div class="brand">NIGHT SHIFT</div>
-      <div class="hours">22:00 — 06:00</div>
+  <div class="corner top-left">
+    <div class="brand">NIGHT SHIFT</div>
+    <div class="hours">22:00 — 06:00</div>
+  </div>
+
+  <div class="corner top-right">
+    NOT ANOTHER SOCIAL APP.
+  </div>
+
+  <div class="map-wrap">
+
+    <div class="map-shade"></div>
+
+    <span class="city main madrid"></span>
+    <span class="city main amsterdam"></span>
+    <span class="city main berlin"></span>
+
+    <span class="city soft london"></span>
+    <span class="city soft paris"></span>
+    <span class="city soft lisbon"></span>
+    <span class="city soft rome"></span>
+    <span class="city soft vienna"></span>
+    <span class="city soft prague"></span>
+    <span class="city soft warsaw"></span>
+    <span class="city soft copenhagen"></span>
+    <span class="city soft oslo"></span>
+    <span class="city soft stockholm"></span>
+    <span class="city soft budapest"></span>
+    <span class="city soft bucharest"></span>
+    <span class="city soft athens"></span>
+
+  </div>
+
+  <section class="center">
+
+    <div class="clock">
+      EUROPE / <span id="clock">--:--</span>
     </div>
 
-    <div class="corner top-right">
-      NOT ANOTHER SOCIAL APP.
+    <h1>
+      YOUR CITY IS ASLEEP.
+    </h1>
+
+    <div class="question">
+      DO YOU WANT TO START YOUR NIGHT SHIFT?
     </div>
 
-    <!-- REAL LOCAL MAP -->
+    <div class="form-area">
 
-    <div class="map-wrap">
-
-      <img
-        class="real-map"
-        src="./Blank_map_of_Europe_1839.svg"
-        alt=""
+      <form
+        id="accessForm"
+        class="form"
       >
 
-      <div class="map-glow"></div>
+        <div class="field">
 
-      <span class="city main madrid"></span>
-      <span class="city main amsterdam"></span>
-      <span class="city main berlin"></span>
+          <label for="email">
+            EMAIL
+          </label>
 
-      <span class="city soft london"></span>
-      <span class="city soft paris"></span>
-      <span class="city soft lisbon"></span>
-      <span class="city soft rome"></span>
-      <span class="city soft vienna"></span>
-      <span class="city soft prague"></span>
-      <span class="city soft warsaw"></span>
-      <span class="city soft copenhagen"></span>
-      <span class="city soft oslo"></span>
-      <span class="city soft stockholm"></span>
-      <span class="city soft budapest"></span>
-      <span class="city soft bucharest"></span>
-      <span class="city soft athens"></span>
+          <input
+            id="email"
+            type="email"
+            autocomplete="email"
+            required
+          >
+
+        </div>
+
+        <div class="field">
+
+          <label for="city">
+            CITY
+          </label>
+
+          <input
+            id="city"
+            type="text"
+            autocomplete="address-level2"
+            required
+          >
+
+        </div>
+
+      </form>
+
+      <button
+        type="submit"
+        form="accessForm"
+      >
+        REQUEST ACCESS TO SHIFT →
+      </button>
+
+      <div
+        id="status"
+        class="status"
+      ></div>
 
     </div>
 
-    <!-- CONTENT -->
+  </section>
 
-    <section class="center">
+  <div class="corner bottom-left">
+    DOCUMENTING WHAT HAPPENS AFTER DARK.
+  </div>
 
-      <div class="clock">
-        EUROPE / <span id="clock">--:--</span>
-      </div>
+  <div class="corner bottom-right">
+    ARCHIVE NIGHT SHIFT — ALL RIGHTS RESERVED.
+  </div>
 
-      <h1>
-        YOUR CITY IS ASLEEP.
-      </h1>
+  <div class="vignette"></div>
+  <div class="scanlines"></div>
 
-      <div class="question">
-        DO YOU WANT TO START YOUR NIGHT SHIFT?
-      </div>
+</main>
 
-      <div class="form-area">
+<script>
 
-        <form id="accessForm" class="form">
+  function updateClock() {
 
-          <div class="field">
-            <label for="email">EMAIL</label>
-            <input
-              id="email"
-              type="email"
-              autocomplete="email"
-              required
-            >
-          </div>
+    const now =
+      new Date();
 
-          <div class="field">
-            <label for="city">CITY</label>
-            <input
-              id="city"
-              type="text"
-              autocomplete="address-level2"
-              required
-            >
-          </div>
+    const hours =
+      String(
+        now.getHours()
+      ).padStart(
+        2,
+        "0"
+      );
 
-        </form>
+    const minutes =
+      String(
+        now.getMinutes()
+      ).padStart(
+        2,
+        "0"
+      );
 
-        <button type="submit" form="accessForm">
-          REQUEST ACCESS TO SHIFT →
-        </button>
+    document
+      .getElementById("clock")
+      .textContent =
+      `${hours}:${minutes}`;
+  }
 
-        <div id="status" class="status"></div>
+  updateClock();
 
-      </div>
-
-    </section>
-
-    <div class="corner bottom-left">
-      DOCUMENTING WHAT HAPPENS AFTER DARK.
-    </div>
-
-    <div class="corner bottom-right">
-      ARCHIVE NIGHT SHIFT — ALL RIGHTS RESERVED.
-    </div>
-
-    <div class="vignette"></div>
-    <div class="scanlines"></div>
-
-  </main>
-
-  <script>
-
-    function updateClock() {
-      const now = new Date();
-
-      const hours =
-        String(now.getHours()).padStart(2, "0");
-
-      const minutes =
-        String(now.getMinutes()).padStart(2, "0");
-
-      document
-        .getElementById("clock")
-        .textContent =
-        `${hours}:${minutes}`;
-    }
-
-    updateClock();
-    setInterval(updateClock, 1000);
+  setInterval(
+    updateClock,
+    1000
+  );
 
 
-    const form =
-      document.getElementById("accessForm");
+  const form =
+    document.getElementById(
+      "accessForm"
+    );
 
-    const status =
-      document.getElementById("status");
+  const status =
+    document.getElementById(
+      "status"
+    );
 
-    form.addEventListener("submit", function(event) {
+  form.addEventListener(
+    "submit",
+    function(event) {
+
       event.preventDefault();
 
       const email =
-        document.getElementById("email").value.trim();
+        document
+          .getElementById("email")
+          .value
+          .trim();
 
       const city =
-        document.getElementById("city").value.trim();
+        document
+          .getElementById("city")
+          .value
+          .trim();
 
       if (!email || !city) {
         return;
@@ -645,10 +817,10 @@
         "REQUEST RECEIVED. WE'LL WAKE YOU WHEN YOUR CITY DOES.";
 
       form.reset();
-    });
+    }
+  );
 
-  </script>
+</script>
 
 </body>
-
 </html>
