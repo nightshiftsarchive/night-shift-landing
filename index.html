@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,7 +17,7 @@
 html,
 body {
     width: 100%;
-    height: 100%;
+    min-height: 100%;
 }
 
 body {
@@ -104,15 +103,14 @@ body {
 .constellation {
     position: absolute;
     left: 50%;
-    top: 50%;
+    top: 49%;
 
     transform: translate(-50%, -50%);
 
-    width: min(900px, 62vw);
+    width: min(920px, 64vw);
     height: min(620px, 70vh);
 
     z-index: 2;
-
     pointer-events: none;
 }
 
@@ -123,15 +121,13 @@ body {
 
 .node {
     position: absolute;
-
     display: flex;
     align-items: center;
-
     gap: 8px;
 
     white-space: nowrap;
 
-    opacity: .28;
+    opacity: .22;
 
     animation:
         nodeFade
@@ -143,7 +139,6 @@ body {
         var(--delay, 0s);
 }
 
-
 .node-dot {
     position: relative;
 
@@ -152,12 +147,10 @@ body {
 
     border-radius: 50%;
 
-    background:
-        rgba(245,242,235,.72);
+    background: rgba(245,242,235,.78);
 
     box-shadow:
-        0 0 4px
-        rgba(255,255,255,.28);
+        0 0 4px rgba(255,255,255,.26);
 
     animation:
         dotGlow
@@ -168,7 +161,6 @@ body {
     animation-delay:
         var(--delay, 0s);
 }
-
 
 .node-dot::after {
     content: "";
@@ -189,7 +181,7 @@ body {
 
     border:
         1px solid
-        rgba(245,242,235,.12);
+        rgba(245,242,235,.13);
 
     opacity: 0;
 
@@ -203,20 +195,17 @@ body {
         var(--delay, 0s);
 }
 
-
 .node-name {
     font-size: 6px;
-
     letter-spacing: 2.1px;
 
     color:
-        rgba(238,234,226,.34);
+        rgba(238,234,226,.28);
 
     text-transform: uppercase;
 
     text-shadow:
-        0 0 0
-        rgba(255,255,255,0);
+        0 0 0 rgba(255,255,255,0);
 
     animation:
         nameSignal
@@ -237,23 +226,21 @@ body {
 
     0%,
     100% {
-        opacity: .18;
+        opacity: .14;
     }
 
-    45% {
-        opacity: .34;
+    38% {
+        opacity: .20;
     }
 
-    55% {
-        opacity: .48;
+    50% {
+        opacity: .52;
     }
 
-    65% {
-        opacity: .28;
+    62% {
+        opacity: .25;
     }
-
 }
-
 
 @keyframes dotGlow {
 
@@ -263,23 +250,21 @@ body {
 
         box-shadow:
             0 0 3px
-            rgba(255,255,255,.15);
-    }
-
-    50% {
-        transform: scale(1.6);
-
-        box-shadow:
-            0 0 5px
-            rgba(255,255,255,.8),
-            0 0 12px
-            rgba(255,255,255,.35),
-            0 0 22px
             rgba(255,255,255,.12);
     }
 
-}
+    48% {
+        transform: scale(1.8);
 
+        box-shadow:
+            0 0 6px
+            rgba(255,255,255,.9),
+            0 0 14px
+            rgba(255,255,255,.42),
+            0 0 26px
+            rgba(255,255,255,.16);
+    }
+}
 
 @keyframes signalRing {
 
@@ -291,18 +276,18 @@ body {
         opacity: 0;
     }
 
-    36% {
+    34% {
         opacity: 0;
     }
 
-    48% {
-        opacity: .28;
+    46% {
+        opacity: .34;
     }
 
-    74% {
+    72% {
         transform:
             translate(-50%, -50%)
-            scale(2.2);
+            scale(2.5);
 
         opacity: 0;
     }
@@ -310,64 +295,59 @@ body {
     100% {
         opacity: 0;
     }
-
 }
-
 
 @keyframes nameSignal {
 
     0%,
     100% {
         color:
-            rgba(238,234,226,.22);
+            rgba(238,234,226,.18);
 
         text-shadow:
             0 0 0
             rgba(255,255,255,0);
     }
 
-    44% {
+    40% {
         color:
-            rgba(238,234,226,.34);
+            rgba(238,234,226,.27);
     }
 
-    53% {
+    50% {
         color:
-            rgba(245,242,235,.68);
+            rgba(245,242,235,.78);
 
         text-shadow:
-            0 0 7px
-            rgba(255,255,255,.18);
+            0 0 8px
+            rgba(255,255,255,.22);
     }
 
-    65% {
+    63% {
         color:
-            rgba(238,234,226,.32);
+            rgba(238,234,226,.30);
 
         text-shadow:
             0 0 0
             rgba(255,255,255,0);
     }
-
 }
 
 
 /* =====================================================
-   CITY POSITIONS
+   CITY POSITIONS — DESKTOP
 ===================================================== */
 
 .oslo {
     left: 48%;
-    top: 2%;
-
+    top: 1%;
     --delay: .2s;
     --duration: 6.2s;
 }
 
 .stockholm {
-    left: 60%;
-    top: 7%;
-
+    left: 61%;
+    top: 8%;
     --delay: 2.1s;
     --duration: 7s;
 }
@@ -375,127 +355,111 @@ body {
 .copenhagen {
     left: 51%;
     top: 20%;
-
     --delay: 1.2s;
     --duration: 5.4s;
 }
 
 .london {
-    left: 22%;
-    top: 29%;
-
+    left: 21%;
+    top: 31%;
     --delay: 3.4s;
     --duration: 6.7s;
 }
 
 .amsterdam {
-    left: 38%;
-    top: 31%;
-
+    left: 36%;
+    top: 33%;
     --delay: .8s;
     --duration: 5.8s;
 }
 
 .berlin {
-    left: 54%;
-    top: 31%;
-
+    left: 57%;
+    top: 33%;
     --delay: 2.8s;
     --duration: 6.1s;
 }
 
 .paris {
-    left: 30%;
-    top: 42%;
-
+    left: 27%;
+    top: 45%;
     --delay: 4.1s;
     --duration: 7.3s;
 }
 
 .prague {
-    left: 56%;
-    top: 43%;
-
+    left: 59%;
+    top: 44%;
     --delay: 1.7s;
     --duration: 6.4s;
 }
 
 .vienna {
-    left: 58%;
-    top: 52%;
-
+    left: 66%;
+    top: 54%;
     --delay: 3.1s;
     --duration: 5.9s;
 }
 
 .warsaw {
-    left: 69%;
-    top: 37%;
-
+    left: 73%;
+    top: 38%;
     --delay: .4s;
     --duration: 6.8s;
 }
 
 .budapest {
-    left: 63%;
-    top: 59%;
-
+    left: 70%;
+    top: 62%;
     --delay: 2.3s;
     --duration: 7.1s;
 }
 
 .lisbon {
-    left: 6%;
-    top: 69%;
-
+    left: 5%;
+    top: 70%;
     --delay: 3.8s;
     --duration: 6.6s;
 }
 
 .madrid {
-    left: 20%;
-    top: 65%;
-
+    left: 18%;
+    top: 66%;
     --delay: 1s;
     --duration: 5.6s;
 }
 
 .barcelona {
-    left: 30%;
-    top: 70%;
-
+    left: 28%;
+    top: 74%;
     --delay: 4.5s;
     --duration: 7.4s;
 }
 
 .milan {
-    left: 45%;
-    top: 66%;
-
+    left: 46%;
+    top: 72%;
     --delay: 2s;
     --duration: 6s;
 }
 
 .rome {
-    left: 49%;
-    top: 78%;
-
+    left: 52%;
+    top: 83%;
     --delay: .6s;
     --duration: 6.9s;
 }
 
 .bucharest {
-    left: 77%;
-    top: 65%;
-
+    left: 82%;
+    top: 67%;
     --delay: 3.6s;
     --duration: 7.2s;
 }
 
 .athens {
-    left: 69%;
-    top: 88%;
-
+    left: 72%;
+    top: 91%;
     --delay: 1.5s;
     --duration: 6.3s;
 }
@@ -509,7 +473,7 @@ body {
     position: absolute;
 
     left: 50%;
-    top: 49%;
+    top: 47.5%;
 
     transform:
         translate(-50%, -50%);
@@ -522,18 +486,15 @@ body {
     z-index: 10;
 }
 
-
 .clock {
     margin-bottom: 20px;
 
     font-size: 7px;
-
     letter-spacing: 4px;
 
     color:
         rgba(238,234,226,.48);
 }
-
 
 h1 {
     white-space: nowrap;
@@ -554,12 +515,10 @@ h1 {
     color: #eeeae2;
 }
 
-
 .question {
     margin-top: 18px;
 
     font-size: 7px;
-
     letter-spacing: 4px;
 
     color:
@@ -579,11 +538,10 @@ h1 {
         );
 
     margin:
-        32px
+        30px
         auto
         0;
 }
-
 
 .form {
     display: grid;
@@ -595,11 +553,9 @@ h1 {
     gap: 24px;
 }
 
-
 .field {
     text-align: left;
 }
-
 
 .field label {
     display: block;
@@ -607,13 +563,11 @@ h1 {
     margin-bottom: 7px;
 
     font-size: 6px;
-
     letter-spacing: 3px;
 
     color:
         rgba(238,234,226,.43);
 }
-
 
 .field input {
     width: 100%;
@@ -641,20 +595,16 @@ h1 {
         serif;
 
     font-size: 9px;
-
     letter-spacing: 1px;
 }
-
 
 .field input:focus {
     border-bottom-color:
         rgba(238,234,226,.82);
 }
 
-
 button {
     width: 100%;
-
     height: 37px;
 
     margin-top: 22px;
@@ -674,7 +624,6 @@ button {
         serif;
 
     font-size: 6px;
-
     letter-spacing: 3px;
 
     cursor: pointer;
@@ -685,15 +634,11 @@ button {
         border-color .25s ease;
 }
 
-
 button:hover {
     background: #eeeae2;
-
     color: #030303;
-
     border-color: #eeeae2;
 }
-
 
 .status {
     min-height: 13px;
@@ -701,7 +646,6 @@ button:hover {
     margin-top: 11px;
 
     font-size: 6px;
-
     letter-spacing: 2px;
 
     color:
@@ -715,7 +659,6 @@ button:hover {
 
 .vignette {
     position: absolute;
-
     inset: 0;
 
     z-index: 7;
@@ -731,10 +674,8 @@ button:hover {
         );
 }
 
-
 .scanlines {
     position: absolute;
-
     inset: 0;
 
     z-index: 40;
@@ -760,56 +701,170 @@ button:hover {
 
 @media (max-width: 700px) {
 
+    html,
     body {
-        overflow-y: auto;
+        min-height: 100%;
     }
 
+    body {
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
 
     .landing {
         height: auto;
-
         min-height: 100svh;
 
         padding:
-            130px
+            112px
             20px
-            90px;
-    }
+            42px;
 
+        overflow: hidden;
+    }
 
     .top-left {
+        top: 22px;
         left: 20px;
-        top: 21px;
     }
 
+    .brand {
+        font-size: 10px;
+        letter-spacing: 5px;
+    }
+
+    .hours {
+        font-size: 6px;
+        letter-spacing: 3px;
+    }
 
     .top-right {
-        right: 20px;
         top: 23px;
+        right: 20px;
 
-        max-width: 135px;
+        width: 155px;
 
         text-align: right;
 
-        line-height: 1.5;
+        font-size: 7px;
+        letter-spacing: 3px;
+        line-height: 1.55;
     }
-
 
     .constellation {
         left: 50%;
-        top: 46%;
+        top: 47%;
 
-        width: 120vw;
-        height: 520px;
+        transform:
+            translate(-50%, -50%);
 
-        opacity: .58;
+        width: 118vw;
+        height: 610px;
+
+        opacity: .74;
     }
-
 
     .node-name {
         font-size: 5px;
-
         letter-spacing: 1.4px;
+    }
+
+    .node-dot {
+        width: 3px;
+        height: 3px;
+    }
+
+
+    /* MOBILE CITY REPOSITIONING */
+
+    .oslo {
+        left: 47%;
+        top: 2%;
+    }
+
+    .stockholm {
+        left: 65%;
+        top: 9%;
+    }
+
+    .copenhagen {
+        left: 56%;
+        top: 19%;
+    }
+
+    .london {
+        left: 11%;
+        top: 28%;
+    }
+
+    .amsterdam {
+        left: 28%;
+        top: 33%;
+    }
+
+    .berlin {
+        left: 70%;
+        top: 31%;
+    }
+
+    .paris {
+        left: 11%;
+        top: 43%;
+    }
+
+    .prague {
+        left: 75%;
+        top: 43%;
+    }
+
+    .vienna {
+        left: 80%;
+        top: 56%;
+    }
+
+    .warsaw {
+        left: 88%;
+        top: 37%;
+    }
+
+    .budapest {
+        left: 81%;
+        top: 67%;
+    }
+
+    .lisbon {
+        left: 3%;
+        top: 76%;
+    }
+
+    .madrid {
+        left: 13%;
+        top: 68%;
+    }
+
+    .barcelona {
+        left: 18%;
+        top: 81%;
+    }
+
+    .milan {
+        left: 45%;
+        top: 78%;
+    }
+
+    .rome {
+        left: 50%;
+        top: 89%;
+    }
+
+    .bucharest {
+        left: 88%;
+        top: 77%;
+    }
+
+    .athens {
+        left: 75%;
+        top: 94%;
     }
 
 
@@ -823,14 +878,20 @@ button:hover {
 
         width: 100%;
 
-        margin-top: 80px;
-    }
+        margin:
+            155px
+            auto
+            0;
 
+        z-index: 12;
+    }
 
     .clock {
-        margin-bottom: 18px;
-    }
+        margin-bottom: 22px;
 
+        font-size: 7px;
+        letter-spacing: 4px;
+    }
 
     h1 {
         white-space: normal;
@@ -841,53 +902,69 @@ button:hover {
 
         font-size:
             clamp(
-                30px,
-                9vw,
-                40px
+                31px,
+                10vw,
+                42px
             );
 
         line-height: 1.08;
+        letter-spacing: .06em;
     }
 
-
     .question {
-        max-width: 310px;
+        max-width: 315px;
 
         margin:
-            18px
+            22px
             auto
             0;
 
         font-size: 7px;
-
         letter-spacing: 3px;
-
-        line-height: 1.7;
+        line-height: 1.8;
     }
-
 
     .form-area {
         width: 100%;
+        max-width: 335px;
 
-        max-width: 360px;
-
-        margin-top: 38px;
+        margin:
+            40px
+            auto
+            0;
     }
-
 
     .form {
-        grid-template-columns: 1fr;
-
-        gap: 24px;
+        display: block;
     }
 
+    .field {
+        margin-bottom: 25px;
+    }
+
+    .field label {
+        margin-bottom: 9px;
+
+        font-size: 6px;
+        letter-spacing: 3px;
+    }
+
+    .field input {
+        padding-bottom: 8px;
+    }
 
     button {
-        height: 42px;
+        height: 38px;
 
-        margin-top: 26px;
+        margin-top: 5px;
+
+        font-size: 6px;
+        letter-spacing: 2.7px;
     }
 
+    .status {
+        margin-top: 12px;
+    }
 
     .bottom-left {
         position: relative;
@@ -895,31 +972,75 @@ button:hover {
         left: auto;
         bottom: auto;
 
-        margin-top: 80px;
+        margin:
+            70px
+            auto
+            0;
+
+        width: 100%;
 
         text-align: center;
 
-        line-height: 1.6;
+        font-size: 6px;
+        letter-spacing: 2px;
+        line-height: 1.7;
     }
-
 
     .bottom-right {
         display: none;
     }
+}
 
+
+/* =====================================================
+   VERY SMALL PHONES
+===================================================== */
+
+@media (max-width: 390px) {
+
+    .landing {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .top-right {
+        width: 132px;
+        font-size: 6px;
+        letter-spacing: 2.5px;
+    }
+
+    .content {
+        margin-top: 145px;
+    }
+
+    h1 {
+        max-width: 330px;
+
+        font-size:
+            clamp(
+                29px,
+                10vw,
+                39px
+            );
+    }
+
+    .question {
+        max-width: 280px;
+    }
+
+    .form-area {
+        max-width: 310px;
+    }
 }
 
 </style>
 </head>
 
-
 <body>
 
 <main class="landing">
 
-
 <div class="corner top-left">
-
     <div class="brand">
         NIGHT SHIFT
     </div>
@@ -927,170 +1048,135 @@ button:hover {
     <div class="hours">
         22:00 — 06:00
     </div>
-
 </div>
-
 
 <div class="corner top-right">
     NOT ANOTHER SOCIAL APP.
 </div>
 
 
-
-<!-- =====================================================
-     CITY SIGNALS
-===================================================== -->
+<!-- CITY SIGNALS -->
 
 <div class="constellation">
-
 
     <div class="node oslo">
         <span class="node-dot"></span>
         <span class="node-name">OSLO</span>
     </div>
 
-
     <div class="node stockholm">
         <span class="node-dot"></span>
         <span class="node-name">STOCKHOLM</span>
     </div>
-
 
     <div class="node copenhagen">
         <span class="node-dot"></span>
         <span class="node-name">COPENHAGEN</span>
     </div>
 
-
     <div class="node london">
         <span class="node-dot"></span>
         <span class="node-name">LONDON</span>
     </div>
-
 
     <div class="node amsterdam">
         <span class="node-dot"></span>
         <span class="node-name">AMSTERDAM</span>
     </div>
 
-
     <div class="node berlin">
         <span class="node-dot"></span>
         <span class="node-name">BERLIN</span>
     </div>
-
 
     <div class="node paris">
         <span class="node-dot"></span>
         <span class="node-name">PARIS</span>
     </div>
 
-
     <div class="node prague">
         <span class="node-dot"></span>
         <span class="node-name">PRAGUE</span>
     </div>
-
 
     <div class="node vienna">
         <span class="node-dot"></span>
         <span class="node-name">VIENNA</span>
     </div>
 
-
     <div class="node warsaw">
         <span class="node-dot"></span>
         <span class="node-name">WARSAW</span>
     </div>
-
 
     <div class="node budapest">
         <span class="node-dot"></span>
         <span class="node-name">BUDAPEST</span>
     </div>
 
-
     <div class="node lisbon">
         <span class="node-dot"></span>
         <span class="node-name">LISBON</span>
     </div>
-
 
     <div class="node madrid">
         <span class="node-dot"></span>
         <span class="node-name">MADRID</span>
     </div>
 
-
     <div class="node barcelona">
         <span class="node-dot"></span>
         <span class="node-name">BARCELONA</span>
     </div>
-
 
     <div class="node milan">
         <span class="node-dot"></span>
         <span class="node-name">MILAN</span>
     </div>
 
-
     <div class="node rome">
         <span class="node-dot"></span>
         <span class="node-name">ROME</span>
     </div>
-
 
     <div class="node bucharest">
         <span class="node-dot"></span>
         <span class="node-name">BUCHAREST</span>
     </div>
 
-
     <div class="node athens">
         <span class="node-dot"></span>
         <span class="node-name">ATHENS</span>
     </div>
 
-
 </div>
 
 
-
-<!-- =====================================================
-     MAIN CONTENT
-===================================================== -->
+<!-- MAIN CONTENT -->
 
 <section class="content">
 
-
     <div class="clock">
-
         EUROPE /
         <span id="clock">
             --:--
         </span>
-
     </div>
-
 
     <h1>
         YOUR CITY IS ASLEEP.
     </h1>
 
-
     <div class="question">
         DO YOU WANT TO START YOUR NIGHT SHIFT?
     </div>
 
-
     <div class="form-area">
-
 
         <form
             id="accessForm"
             class="form"
         >
-
 
             <div class="field">
 
@@ -1108,7 +1194,6 @@ button:hover {
 
             </div>
 
-
             <div class="field">
 
                 <label for="city">
@@ -1125,50 +1210,37 @@ button:hover {
 
             </div>
 
-
         </form>
-
 
         <button
             type="submit"
             form="accessForm"
         >
-
             REQUEST ACCESS TO SHIFT →
-
         </button>
-
 
         <div
             id="status"
             class="status"
         ></div>
 
-
     </div>
 
-
 </section>
-
 
 
 <div class="corner bottom-left">
     DOCUMENTING WHAT HAPPENS AFTER DARK.
 </div>
 
-
 <div class="corner bottom-right">
     ARCHIVE NIGHT SHIFT — ALL RIGHTS RESERVED.
 </div>
 
-
 <div class="vignette"></div>
-
 <div class="scanlines"></div>
 
-
 </main>
-
 
 
 <script>
@@ -1178,7 +1250,6 @@ function updateClock() {
     const now =
         new Date();
 
-
     const hours =
         String(
             now.getHours()
@@ -1186,7 +1257,6 @@ function updateClock() {
             2,
             "0"
         );
-
 
     const minutes =
         String(
@@ -1196,17 +1266,13 @@ function updateClock() {
             "0"
         );
 
-
     document
         .getElementById("clock")
         .textContent =
         `${hours}:${minutes}`;
-
 }
 
-
 updateClock();
-
 
 setInterval(
     updateClock,
@@ -1214,18 +1280,15 @@ setInterval(
 );
 
 
-
 const form =
     document.getElementById(
         "accessForm"
     );
 
-
 const status =
     document.getElementById(
         "status"
     );
-
 
 form.addEventListener(
     "submit",
@@ -1233,13 +1296,11 @@ form.addEventListener(
 
         event.preventDefault();
 
-
         const email =
             document
                 .getElementById("email")
                 .value
                 .trim();
-
 
         const city =
             document
@@ -1247,24 +1308,18 @@ form.addEventListener(
                 .value
                 .trim();
 
-
         if (!email || !city) {
             return;
         }
 
-
         status.textContent =
             "SIGNAL RECEIVED. YOUR CITY REMAINS ASLEEP.";
 
-
         form.reset();
-
     }
 );
 
 </script>
 
-
 </body>
-
 </html>
